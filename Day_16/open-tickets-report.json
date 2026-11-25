@@ -1,0 +1,17 @@
+{
+  "generated_at": "2026-11-16T11:41:39.316Z",
+  "tickets_processed": 3,
+  "open_tickets_count": 2,
+  "tickets": [
+    {
+      "id": 101,
+      "subject": "Login timeout",
+      "status": "open"
+    },
+    {
+      "id": 103,
+      "subject": "API rate Limit",
+      "status": "open"
+    }
+  ]
+}

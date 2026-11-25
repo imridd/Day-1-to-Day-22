@@ -1,0 +1,6 @@
+'use client';
+import { createContext, useContext, useMemo, useState } from 'react';
+import { CssBaseline, ThemeProvider, createTheme } from '@mui/material';
+const ThemeCtx=createContext({mode:'light',toggle:()=>{}});
+export const useAppTheme=()=>useContext(ThemeCtx);
+export function AppTheme({children}){const [mode,setMode]=useState('light');const theme=useMemo(()=>createTheme({palette:{mode,primary:{main:'#7158f5'},secondary:{main:'#ff6b9d'},background:{default:mode==='light'?'#f6f5fb':'#10101a',paper:mode==='light'?'#fff':'#1b1b29'}},shape:{borderRadius:16},typography:{fontFamily:'Inter, ui-sans-serif, system-ui, sans-serif',button:{textTransform:'none',fontWeight:700},h4:{fontWeight:850,letterSpacing:'-.04em'},h5:{fontWeight:800,letterSpacing:'-.03em'}},components:{MuiButton:{styleOverrides:{root:{borderRadius:12,paddingInline:18}}},MuiPaper:{styleOverrides:{root:{backgroundImage:'none'}}},MuiCard:{styleOverrides:{root:{border:'1px solid',borderColor:mode==='light'?'#ebe9f4':'#303044',boxShadow:'0 10px 30px rgba(20,15,60,.045)'}}}}}),[mode]);return <ThemeCtx.Provider value={{mode,toggle:()=>setMode(m=>m==='light'?'dark':'light')}}><ThemeProvider theme={theme}><CssBaseline/>{children}</ThemeProvider></ThemeCtx.Provider>;}

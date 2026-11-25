@@ -1,0 +1,119 @@
+
+/* =========================================
+   CRM APPLICATION - GLOBAL STYLES
+   SALESFORCE LIGHTNING INSPIRED
+========================================= */
+
+/* GOOGLE FONT */
+
+@import url('https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700;800&display=swap');
+
+/* GLOBAL RESET */
+
+:root {
+  font-family: 'DM Sans', sans-serif;
+  color: #181818;
+  background: #f3f3f3;
+
+  font-synthesis: none;
+  text-rendering: optimizeLegibility;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+}
+
+html,
+body,
+#root {
+  width: 100%;
+  min-width: 320px;
+  min-height: 100%;
+  margin: 0;
+  padding: 0;
+}
+
+html {
+  background: #f3f3f3;
+}
+
+body {
+  min-height: 100vh;
+  font-family: 'DM Sans', sans-serif;
+  color: #181818;
+  background: #f3f3f3;
+}
+
+button,
+input,
+select,
+textarea {
+  font: inherit;
+}
+
+button {
+  cursor: pointer;
+}
+
+/* =========================================
+   MAIN CRM APPLICATION LAYOUT
+========================================= */
+
+.crm-layout {
+  display: flex;
+  align-items: stretch;
+  width: 100%;
+  min-height: 100vh;
+  margin: 0;
+  padding: 0;
+  background: #f3f3f3;
+}
+
+/* MAIN CONTENT AREA */
+
+.crm-main {
+  display: flex;
+  flex: 1 1 0%;
+  flex-direction: column;
+  min-width: 0;
+  min-height: 100vh;
+  margin: 0;
+  padding: 0;
+  background: #f3f3f3;
+}
+
+/* PAGE WORKSPACE */
+
+.crm-workspace {
+  flex: 1 1 auto;
+  width: 100%;
+  min-width: 0;
+  min-height: 0;
+  margin: 0;
+  padding: 0;
+  background: #f3f3f3;
+}
+
+/* =========================================
+   RESPONSIVE GLOBAL LAYOUT
+========================================= */
+
+@media (max-width: 650px) {
+  .crm-layout {
+    width: 100%;
+    min-height: 100vh;
+  }
+
+  .crm-main {
+    width: 100%;
+    min-height: 100vh;
+  }
+
+  .crm-workspace {
+    width: 100%;
+  }
+}

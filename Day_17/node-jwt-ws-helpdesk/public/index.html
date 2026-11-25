@@ -1,0 +1,389 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport"
+        content="width=device-width, initial-scale=1.0">
+ 
+  <title>Helpdesk Live - JWT + WebSocket</title>
+ 
+  <style>
+    * {
+      box-sizing: border-box;
+    }
+ 
+    body {
+      font-family: Arial, sans-serif;
+      background: #edf2f9;
+      margin: 0;
+      color: #16283e;
+    }
+ 
+    main {
+      max-width: 900px;
+      margin: 35px auto;
+      padding: 20px;
+    }
+ 
+    .grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 20px;
+    }
+ 
+    .card {
+      background: white;
+      padding: 22px;
+      border-radius: 12px;
+      box-shadow: 0 4px 16px #0001;
+    }
+ 
+    .full {
+      grid-column: 1 / -1;
+    }
+ 
+    label {
+      display: block;
+      margin: 12px 0 6px;
+    }
+ 
+    input, select {
+      width: 100%;
+      padding: 10px;
+      border: 1px solid #ccc;
+      border-radius: 6px;
+    }
+ 
+    button {
+      padding: 12px 18px;
+      border: none;
+      border-radius: 6px;
+      background: #165dab;
+      color: white;
+      cursor: pointer;
+      margin-top: 12px;
+    }
+ 
+    button:disabled {
+      background: #a0aec0;
+      cursor: not-allowed;
+    }
+ 
+    #log {
+      list-style: none;
+      padding: 0;
+      max-height: 300px;
+      overflow-y: auto;
+    }
+ 
+    #log li {
+      border-bottom: 1px solid #eee;
+      padding: 10px 0;
+      overflow-wrap: anywhere;
+    }
+ 
+    #status {
+      color: #a16207;
+      font-weight: bold;
+    }
+ 
+    #status.online {
+      color: green;
+    }
+ 
+    @media (max-width: 650px) {
+      .grid {
+        grid-template-columns: 1fr;
+      }
+    }
+  </style>
+</head>
+ 
+<body>
+<main>
+  <h1>Enterprise Helpdesk Live</h1>
+  <p>Node.js + JWT Authentication + WebSockets</p>
+ 
+  <div class="grid">
+ 
+    <!-- LOGIN -->
+    <section class="card">
+      <h2>1. Login</h2>
+ 
+      <form id="loginForm">
+ 
+        <label for="username">Username</label>
+        <input
+          id="username"
+          value="agent"
+          autocomplete="username"
+          required
+        >
+ 
+        <label for="password">Password</label>
+        <input
+          id="password"
+          type="password"
+          value="Agent@123"
+          autocomplete="current-password"
+          required
+        >
+ 
+        <button type="submit">Login & Connect</button>
+      </form>
+ 
+      <p id="status">Not connected</p>
+ 
+      <button id="logout" disabled>
+        Disconnect
+      </button>
+    </section>
+ 
+    <!-- TICKET STATUS -->
+    <section class="card">
+      <h2>2. Shared Ticket</h2>
+ 
+      <h3>T-101</h3>
+      <p>Customer cannot download invoice</p>
+ 
+      <p>
+        Current Status:
+        <strong id="ticketStatus">Not loaded</strong>
+      </p>
+ 
+      <label for="newStatus">Change Status</label>
+ 
+      <select id="newStatus">
+        <option>Open</option>
+        <option>In Progress</option>
+        <option>Resolved</option>
+      </select>
+ 
+      <button id="updateTicket" disabled>
+        Update Ticket
+      </button>
+ 
+      <p>Only managers can update ticket status.</p>
+    </section>
+ 
+    <!-- REAL-TIME CHAT -->
+    <section class="card full">
+ 
+      <h2>3. Real-Time Team Chat</h2>
+ 
+      <form id="chatForm">
+        <label for="message">Enter Message</label>
+ 
+        <input
+          id="message"
+          maxlength="500"
+          placeholder="Enter your message"
+          required
+        >
+ 
+        <button id="sendMessage" disabled>
+          Send Message
+        </button>
+      </form>
+ 
+      <h3>Live Events</h3>
+      <ul id="log"></ul>
+ 
+    </section>
+  </div>
+</main>
+ 
+<script type="module">
+ 
+  const $ = id => document.getElementById(id);
+ 
+  let accessToken = null;
+  let socket = null;
+  let role = null;
+ 
+  // Display events safely
+  function log(message) {
+    const li = document.createElement('li');
+ 
+    li.textContent =
+      `${new Date().toLocaleTimeString()} - ${message}`;
+ 
+    $('log').prepend(li);
+  }
+ 
+  function setConnected(connected) {
+    $('sendMessage').disabled = !connected;
+    $('updateTicket').disabled =
+      !connected || role !== 'manager';
+ 
+    $('logout').disabled = !connected;
+ 
+    $('status').className =
+      connected ? 'online' : '';
+ 
+    $('status').textContent = connected
+      ? `Connected as ${$('username').value} (${role})`
+      : 'Not connected';
+  }
+ 
+  // STEP 1: Login using HTTP POST
+  $('loginForm').addEventListener('submit', async event => {
+    event.preventDefault();
+ 
+    socket?.close();
+    accessToken = null;
+    role = null;
+    setConnected(false);
+ 
+    try {
+      const response = await fetch('/api/login', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json'
+        },
+        body: JSON.stringify({
+          username: $('username').value,
+          password: $('password').value
+        })
+      });
+ 
+      const result = await response.json();
+ 
+      if (!response.ok) {
+        throw new Error(result.error || 'Login failed');
+      }
+ 
+      accessToken = result.token;
+      role = result.user.role;
+ 
+      log('Login successful. JWT received.');
+ 
+      // STEP 2: Connect using WebSocket
+      connectWebSocket();
+ 
+    } catch (error) {
+      log(`Login error: ${error.message}`);
+    }
+  });
+ 
+  function connectWebSocket() {
+ 
+    const scheme =
+      location.protocol === 'https:' ? 'wss:' : 'ws:';
+ 
+    const currentSocket = new WebSocket(
+      `${scheme}//${location.host}/ws`
+    );
+ 
+    socket = currentSocket;
+ 
+    // STEP 3: Authenticate WebSocket
+    currentSocket.addEventListener('open', () => {
+ 
+      currentSocket.send(JSON.stringify({
+        type: 'auth',
+        token: accessToken
+      }));
+ 
+    });
+ 
+    // STEP 4: Receive live messages
+    currentSocket.addEventListener('message', event => {
+ 
+      if (socket !== currentSocket) return;
+ 
+      const data = JSON.parse(event.data);
+ 
+      switch (data.type) {
+ 
+        case 'auth:ok':
+          role = data.user.role;
+ 
+          $('ticketStatus').textContent =
+            data.ticket.status;
+ 
+          setConnected(true);
+ 
+          log(`JWT verified for ${data.user.username}`);
+          break;
+ 
+        case 'chat:new':
+          log(`${data.from} (${data.role}): ${data.text}`);
+          break;
+ 
+        case 'ticket:updated':
+          $('ticketStatus').textContent =
+            data.ticket.status;
+ 
+          log(
+            `${data.updatedBy} changed ticket status to ${data.ticket.status}`
+          );
+          break;
+ 
+        case 'error':
+          log(`Server error: ${data.message}`);
+          break;
+      }
+    });
+ 
+    // Connection closed
+    currentSocket.addEventListener('close', event => {
+      if (socket !== currentSocket) return;
+ 
+      setConnected(false);
+      accessToken = null;
+ 
+      log(`WebSocket closed (${event.code})`);
+    });
+ 
+    currentSocket.addEventListener('error', () => {
+      if (socket === currentSocket) {
+        log('WebSocket connection error');
+      }
+    });
+  }
+ 
+  // STEP 5: Send chat message
+  $('chatForm').addEventListener('submit', event => {
+    event.preventDefault();
+ 
+    if (socket?.readyState !== WebSocket.OPEN) return;
+ 
+    const text = $('message').value.trim();
+ 
+    if (!text) return;
+ 
+    socket.send(JSON.stringify({
+      type: 'chat:send',
+      text
+    }));
+ 
+    $('message').value = '';
+  });
+ 
+  // STEP 6: Manager updates ticket
+  $('updateTicket').addEventListener('click', () => {
+ 
+    if (socket?.readyState !== WebSocket.OPEN) return;
+ 
+    socket.send(JSON.stringify({
+      type: 'ticket:update',
+      ticketId: 'T-101',
+      status: $('newStatus').value
+    }));
+ 
+  });
+ 
+  // STEP 7: Disconnect WebSocket
+  $('logout').addEventListener('click', () => {
+    accessToken = null;
+ 
+    socket?.close(1000, 'User disconnected');
+ 
+    setConnected(false);
+    log('Disconnected from the WebSocket');
+  });
+ 
+</script>
+</body>
+</html>

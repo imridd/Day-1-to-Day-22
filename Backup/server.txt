@@ -1,0 +1,1270 @@
+
+import http from 'node:http';
+import { readFileSync, existsSync } from 'node:fs';
+import { fileURLToPath } from 'node:url';
+import { dirname, join, resolve } from 'node:path';
+
+import {
+  CRMError,
+  currentUser,
+  getAll,
+  getOne,
+  create,
+  update,
+  remove,
+  convertLead,
+  stats,
+  getAudit,
+  getFlows,
+  getSecurity,
+  getMeta,
+  reset,
+  dbHealth
+} from './engine.mjs';
+
+import {
+  handleGraphQL,
+  EXAMPLES
+} from './graphql-lab.mjs';
+
+// --------------------------------------------------
+// SERVER CONFIGURATION
+// --------------------------------------------------
+
+const here = dirname(fileURLToPath(import.meta.url));
+
+const PORT = Number(process.env.PORT || 4100);
+
+// Allowed frontend origins
+const allowedOrigins = [
+  'http://127.0.0.1:5173',
+  'http://127.0.0.1:5174',
+  'http://localhost:5173',
+  'http://localhost:5174'
+];
+// --------------------------------------------------
+// CORS CONFIGURATION
+// --------------------------------------------------
+
+function getCorsHeaders(req) {
+  const origin = req.headers.origin;
+
+  return {
+    ...(allowedOrigins.includes(origin)
+      ? { 'Access-Control-Allow-Origin': origin }
+      : {}),
+
+    'Access-Control-Allow-Methods':
+      'GET,POST,PATCH,DELETE,OPTIONS',
+
+    'Access-Control-Allow-Headers':
+      'Content-Type,x-demo-user',
+
+    'Cache-Control': 'no-store',
+
+    'Vary': 'Origin'
+  };
+}
+
+// --------------------------------------------------
+// RESPONSE HELPER
+// --------------------------------------------------
+
+function send(req, res, status, body, type = 'application/json') {
+
+  res.writeHead(status, {
+    'Content-Type': type,
+    ...getCorsHeaders(req)
+  });
+
+  res.end(
+    type === 'application/json'
+      ? JSON.stringify(body)
+      : body
+  );
+}
+
+// --------------------------------------------------
+// REQUEST BODY READER
+// --------------------------------------------------
+
+const readBody = req => new Promise((resolve, reject) => {
+
+  let body = '';
+
+  req.on('data', chunk => {
+
+    body += chunk;
+
+    if (body.length > 1024 * 1024) {
+
+      reject(
+        new CRMError('Request exceeds 1 MB', 413)
+      );
+
+      req.destroy();
+    }
+
+  });
+
+  req.on('end', () => {
+
+    try {
+
+      resolve(body ? JSON.parse(body) : {});
+
+    } catch {
+
+      reject(new CRMError('Invalid JSON body'));
+
+    }
+
+  });
+
+  req.on('error', reject);
+
+});
+
+// --------------------------------------------------
+// SERVE SIMULATOR FRONTEND
+// --------------------------------------------------
+
+function servePublic(req, res, path) {
+
+  const file = join(
+    here,
+    'public',
+    path === '/' ? 'index.html' : path.slice(1)
+  );
+
+  const dir = resolve(here, 'public');
+
+  if (!resolve(file).startsWith(dir) || !existsSync(file)) {
+
+    return send(req, res, 404, {
+      error: 'Resource not found'
+    });
+
+  }
+
+  const ext = file.split('.').pop();
+
+  const mime = {
+    html: 'text/html; charset=utf-8',
+    js: 'text/javascript; charset=utf-8',
+    css: 'text/css; charset=utf-8',
+    svg: 'image/svg+xml'
+  }[ext] || 'text/plain';
+
+  return send(
+    req,
+    res,
+    200,
+    readFileSync(file, 'utf8'),
+    mime
+  );
+
+}
+
+// --------------------------------------------------
+// HTTP SERVER
+// --------------------------------------------------
+
+export const server = http.createServer(async (req, res) => {
+
+  // Handle CORS preflight requests
+  if (req.method === 'OPTIONS') {
+
+    return send(req, res, 204, {});
+
+  }
+
+  try {
+
+    const u = new URL(req.url, 'http://localhost');
+
+    const parts = u.pathname.split('/').filter(Boolean);
+
+    const user = currentUser(
+      req.headers['x-demo-user'] || 'u1'
+    );
+
+    // --------------------------------------------------
+    // FRONTEND ROUTES
+    // --------------------------------------------------
+
+    if (parts[0] !== 'api') {
+
+      if (req.method !== 'GET') {
+
+        return send(req, res, 405, {
+          error: 'Method not allowed'
+        });
+
+      }
+
+      return servePublic(req, res, u.pathname);
+
+    }
+
+    const path = parts[1];
+
+    const id = parts[2];
+
+    // --------------------------------------------------
+    // HEALTH CHECK
+    // --------------------------------------------------
+
+    if (path === 'health' && req.method === 'GET') {
+
+      return send(req, res, 200, dbHealth());
+
+    }
+
+    // --------------------------------------------------
+    // SESSION
+    // --------------------------------------------------
+
+    if (path === 'session' && req.method === 'GET') {
+
+      return send(req, res, 200, {
+        user,
+        availableUsers: getMeta().users
+      });
+
+    }
+
+    // --------------------------------------------------
+    // METADATA
+    // --------------------------------------------------
+
+    if (path === 'metadata' && req.method === 'GET') {
+
+      return send(req, res, 200, getMeta());
+
+    }
+
+    // --------------------------------------------------
+    // OVERVIEW
+    // --------------------------------------------------
+
+    if (path === 'overview' && req.method === 'GET') {
+
+      return send(req, res, 200, stats(user));
+
+    }
+
+    // --------------------------------------------------
+    // SECURITY
+    // --------------------------------------------------
+
+    if (path === 'security' && req.method === 'GET') {
+
+      return send(req, res, 200, getSecurity(user));
+
+    }
+
+    // --------------------------------------------------
+    // WORKFLOWS
+    // --------------------------------------------------
+
+    if (path === 'workflows' && req.method === 'GET') {
+
+      return send(req, res, 200, getFlows(user));
+
+    }
+
+    // --------------------------------------------------
+    // AUDIT
+    // --------------------------------------------------
+
+    if (path === 'audit' && req.method === 'GET') {
+
+      return send(req, res, 200, getAudit(user));
+
+    }
+
+    // --------------------------------------------------
+    // GRAPHQL EXAMPLES
+    // --------------------------------------------------
+
+    if (path === 'graphql-examples' && req.method === 'GET') {
+
+      return send(req, res, 200, EXAMPLES);
+
+    }
+
+    // --------------------------------------------------
+    // GRAPHQL
+    // --------------------------------------------------
+
+    if (path === 'graphql' && req.method === 'POST') {
+
+      const body = await readBody(req);
+
+      return send(
+        req,
+        res,
+        200,
+        handleGraphQL(user, body)
+      );
+
+    }
+
+    // --------------------------------------------------
+    // RESET
+    // --------------------------------------------------
+
+    if (path === 'reset' && req.method === 'POST') {
+
+      return send(req, res, 200, reset(user));
+
+    }
+
+    // --------------------------------------------------
+    // LEAD CONVERSION
+    // --------------------------------------------------
+
+    if (
+      path === 'leads' &&
+      id &&
+      parts[3] === 'convert' &&
+      req.method === 'POST'
+    ) {
+
+      const body = await readBody(req);
+
+      return send(
+        req,
+        res,
+        200,
+        convertLead(user, id, body)
+      );
+
+    }
+
+    // --------------------------------------------------
+    // CRM COLLECTION ROUTES
+    // --------------------------------------------------
+
+    const collections = [
+      'leads',
+      'contacts',
+      'accounts',
+      'opportunities',
+      'cases',
+      'tasks'
+    ];
+
+    if (collections.includes(path)) {
+
+      // GET ALL / GET ONE
+      if (req.method === 'GET') {
+
+        const result = id
+          ? getOne(user, path, id)
+          : getAll(
+              user,
+              path,
+              Object.fromEntries(u.searchParams)
+            );
+
+        return send(req, res, 200, result);
+
+      }
+
+      // CREATE
+      if (!id && req.method === 'POST') {
+
+        const body = await readBody(req);
+
+        return send(
+          req,
+          res,
+          201,
+          create(user, path, body)
+        );
+
+      }
+
+      // UPDATE
+      if (id && req.method === 'PATCH') {
+
+        const body = await readBody(req);
+
+        return send(
+          req,
+          res,
+          200,
+          update(user, path, id, body)
+        );
+
+      }
+
+      // DELETE
+      if (id && req.method === 'DELETE') {
+
+        return send(
+          req,
+          res,
+          200,
+          remove(user, path, id)
+        );
+
+      }
+
+    }
+
+    // --------------------------------------------------
+    // UNKNOWN ROUTE
+    // --------------------------------------------------
+
+    return send(req, res, 404, {
+      error: 'Unknown API endpoint',
+      route: u.pathname
+    });
+
+  } catch (e) {
+
+    return send(req, res, e.status || 500, {
+      error: e.message || 'Unexpected server error',
+      type: e instanceof CRMError
+        ? 'CRMError'
+        : 'ServerError'
+    });
+
+  }
+
+});
+
+// --------------------------------------------------
+// START SERVER
+// --------------------------------------------------
+
+if (process.env.NODE_ENV !== 'test') {
+
+  server.listen(PORT, '127.0.0.1', () => {
+
+    console.log(`
+CloudBridge CRM classroom API: http://127.0.0.1:${PORT}
+Offline demo UI: http://127.0.0.1:${PORT}/
+`);
+
+  });
+
+}
+
+import 'dotenv/config';
+
+import { NestFactory } from '@nestjs/core';
+import { AppModule } from './app.module.js';
+
+// --------------------------------------------------
+// SERVER CONFIGURATION
+// --------------------------------------------------
+
+class ServerConfig {
+
+  static PORT = Number(process.env.PORT || 4100);
+
+  static DATABASE_NAME =
+    process.env.DB_NAME || 'cloudbridge_crm_relational';
+
+  static ALLOWED_ORIGINS = [
+    'http://127.0.0.1:5173',
+    'http://127.0.0.1:5174',
+    'http://localhost:5173',
+    'http://localhost:5174'
+  ];
+
+}
+
+// --------------------------------------------------
+// CRM SERVER CLASS
+// --------------------------------------------------
+
+class CRMServer {
+
+  constructor() {
+    this.app = null;
+  }
+
+  async initialize() {
+
+    this.app = await NestFactory.create(AppModule);
+
+    this.configureCors();
+
+    this.configureApi();
+
+  }
+
+  // CORS CONFIGURATION
+
+  configureCors() {
+
+    this.app.enableCors({
+
+      origin: ServerConfig.ALLOWED_ORIGINS,
+
+      methods: [
+        'GET',
+        'POST',
+        'PATCH',
+        'DELETE',
+        'OPTIONS'
+      ],
+
+      allowedHeaders: [
+        'Content-Type',
+        'x-demo-user'
+      ],
+
+      credentials: false
+
+    });
+
+  }
+
+  // API CONFIGURATION
+
+  configureApi() {
+
+    this.app.setGlobalPrefix('api');
+
+    this.app.useBodyParser('json', {
+      limit: '1mb'
+    });
+
+  }
+
+  // START SERVER
+
+  async start() {
+
+    try {
+
+      await this.initialize();
+
+      await this.app.listen(
+        ServerConfig.PORT,
+        '127.0.0.1'
+      );
+
+      this.displayInfo();
+
+    } catch (error) {
+
+      console.error(
+        'Unable to start CRM server:',
+        error
+      );
+
+      process.exitCode = 1;
+
+    }
+
+  }
+
+  // DISPLAY SERVER INFORMATION
+
+  displayInfo() {
+
+    console.log(`
+----------------------------------------
+CLOUDBRIDGE CRM - NESTJS
+----------------------------------------
+
+Backend:
+http://127.0.0.1:${ServerConfig.PORT}
+
+Health:
+http://127.0.0.1:${ServerConfig.PORT}/api/health
+
+Accounts:
+http://127.0.0.1:${ServerConfig.PORT}/api/accounts
+
+Database:
+${ServerConfig.DATABASE_NAME}
+
+Storage:
+MySQL Relational Database
+
+----------------------------------------
+Server is ready.
+----------------------------------------
+    `);
+
+  }
+
+}
+
+// --------------------------------------------------
+// APPLICATION ENTRY POINT
+// --------------------------------------------------
+
+if (process.env.NODE_ENV !== 'test') {
+
+  const server = new CRMServer();
+
+  server.start();
+
+}
+
+export {
+  CRMServer,
+  ServerConfig
+};
+
+import 'dotenv/config';
+
+import http from 'node:http';
+import { readFileSync, existsSync } from 'node:fs';
+import { fileURLToPath } from 'node:url';
+import { dirname, join, resolve, sep } from 'node:path';
+
+import {
+  CRMError,
+  currentUser,
+  getAll,
+  getOne,
+  create,
+  update,
+  remove,
+  convertLead,
+  stats,
+  getAudit,
+  getFlows,
+  getSecurity,
+  getMeta,
+  reset,
+  dbHealth,
+  initializeEngine
+} from './engine.mjs';
+
+import {
+  handleGraphQL,
+  EXAMPLES
+} from './graphql-lab.mjs';
+
+// --------------------------------------------------
+// SERVER CONFIGURATION
+// --------------------------------------------------
+
+const here = dirname(fileURLToPath(import.meta.url));
+
+const PORT = Number(process.env.PORT || 4100);
+
+const DATABASE_NAME =
+  process.env.DB_NAME || 'cloudbridge_crm_relational';
+
+const allowedOrigins = [
+  'http://127.0.0.1:5173',
+  'http://127.0.0.1:5174',
+  'http://localhost:5173',
+  'http://localhost:5174'
+];
+
+// --------------------------------------------------
+// CORS
+// --------------------------------------------------
+
+function getCorsHeaders(req) {
+  const origin = req.headers.origin;
+
+  return {
+    ...(allowedOrigins.includes(origin)
+      ? { 'Access-Control-Allow-Origin': origin }
+      : {}),
+
+    'Access-Control-Allow-Methods':
+      'GET,POST,PATCH,DELETE,OPTIONS',
+
+    'Access-Control-Allow-Headers':
+      'Content-Type,x-demo-user',
+
+    'Cache-Control': 'no-store',
+
+    'Vary': 'Origin'
+  };
+}
+
+// --------------------------------------------------
+// RESPONSE HELPER
+// --------------------------------------------------
+
+function send(
+  req,
+  res,
+  status,
+  body,
+  type = 'application/json'
+) {
+  if (res.writableEnded) return;
+
+  res.writeHead(status, {
+    'Content-Type': type,
+    ...getCorsHeaders(req)
+  });
+
+  // HTTP 204 responses must not contain a response body.
+  if (status === 204) {
+    return res.end();
+  }
+
+  res.end(
+    type === 'application/json'
+      ? JSON.stringify(body)
+      : body
+  );
+}
+
+// --------------------------------------------------
+// REQUEST BODY READER
+// --------------------------------------------------
+
+const readBody = req => new Promise((resolveBody, reject) => {
+  let body = '';
+
+  req.on('data', chunk => {
+    body += chunk;
+
+    if (body.length > 1024 * 1024) {
+      reject(
+        new CRMError('Request exceeds 1 MB', 413)
+      );
+
+      req.destroy();
+    }
+  });
+
+  req.on('end', () => {
+    try {
+      resolveBody(body ? JSON.parse(body) : {});
+    } catch {
+      reject(
+        new CRMError('Invalid JSON body', 400)
+      );
+    }
+  });
+
+  req.on('error', reject);
+});
+
+// --------------------------------------------------
+// SERVE FRONTEND
+// --------------------------------------------------
+
+function servePublic(req, res, requestPath) {
+  const publicDirectory = resolve(here, 'public');
+
+  let relativePath;
+
+  try {
+    relativePath = decodeURIComponent(
+      requestPath === '/'
+        ? 'index.html'
+        : requestPath.slice(1)
+    );
+  } catch {
+    return send(req, res, 400, {
+      error: 'Invalid URL path'
+    });
+  }
+
+  const file = resolve(
+    publicDirectory,
+    relativePath
+  );
+
+  // Prevent access outside the public directory.
+  if (
+    file !== publicDirectory &&
+    !file.startsWith(publicDirectory + sep)
+  ) {
+    return send(req, res, 403, {
+      error: 'Access denied'
+    });
+  }
+
+  if (!existsSync(file)) {
+    return send(req, res, 404, {
+      error: 'Resource not found'
+    });
+  }
+
+  const ext = file.split('.').pop().toLowerCase();
+
+  const mime = {
+    html: 'text/html; charset=utf-8',
+    js: 'text/javascript; charset=utf-8',
+    mjs: 'text/javascript; charset=utf-8',
+    css: 'text/css; charset=utf-8',
+    json: 'application/json; charset=utf-8',
+    svg: 'image/svg+xml',
+    png: 'image/png',
+    jpg: 'image/jpeg',
+    jpeg: 'image/jpeg',
+    webp: 'image/webp',
+    ico: 'image/x-icon'
+  }[ext] || 'application/octet-stream';
+
+  return send(
+    req,
+    res,
+    200,
+    readFileSync(file),
+    mime
+  );
+}
+
+// --------------------------------------------------
+// HTTP SERVER
+// --------------------------------------------------
+
+export const server = http.createServer(
+  async (req, res) => {
+
+    // --------------------------------------------------
+    // PREFLIGHT REQUEST
+    // --------------------------------------------------
+
+    if (req.method === 'OPTIONS') {
+      return send(req, res, 204, null);
+    }
+
+    try {
+      const url = new URL(
+        req.url,
+        'http://localhost'
+      );
+
+      const parts = url.pathname
+        .split('/')
+        .filter(Boolean);
+
+      // --------------------------------------------------
+      // FRONTEND ROUTES
+      // --------------------------------------------------
+
+      if (parts[0] !== 'api') {
+        if (req.method !== 'GET') {
+          return send(req, res, 405, {
+            error: 'Method not allowed'
+          });
+        }
+
+        return servePublic(
+          req,
+          res,
+          url.pathname
+        );
+      }
+
+      // --------------------------------------------------
+      // CURRENT USER
+      // --------------------------------------------------
+
+      const user = currentUser(
+        req.headers['x-demo-user'] || 'u1'
+      );
+
+      const path = parts[1];
+      const id = parts[2];
+
+      // --------------------------------------------------
+      // DATABASE HEALTH
+      // --------------------------------------------------
+
+      if (
+        path === 'health' &&
+        req.method === 'GET'
+      ) {
+        const health = await dbHealth();
+
+        return send(
+          req,
+          res,
+          200,
+          health
+        );
+      }
+
+      // --------------------------------------------------
+      // SESSION
+      // --------------------------------------------------
+
+      if (
+        path === 'session' &&
+        req.method === 'GET'
+      ) {
+        return send(req, res, 200, {
+          user,
+          availableUsers: getMeta().users
+        });
+      }
+
+      // --------------------------------------------------
+      // METADATA
+      // --------------------------------------------------
+
+      if (
+        path === 'metadata' &&
+        req.method === 'GET'
+      ) {
+        return send(
+          req,
+          res,
+          200,
+          getMeta()
+        );
+      }
+
+      // --------------------------------------------------
+      // DASHBOARD OVERVIEW
+      // --------------------------------------------------
+
+      if (
+        path === 'overview' &&
+        req.method === 'GET'
+      ) {
+        return send(
+          req,
+          res,
+          200,
+          await stats(user)
+        );
+      }
+
+      // --------------------------------------------------
+      // SECURITY
+      // --------------------------------------------------
+
+      if (
+        path === 'security' &&
+        req.method === 'GET'
+      ) {
+        return send(
+          req,
+          res,
+          200,
+          getSecurity(user)
+        );
+      }
+
+      // --------------------------------------------------
+      // WORKFLOWS
+      // --------------------------------------------------
+
+      if (
+        path === 'workflows' &&
+        req.method === 'GET'
+      ) {
+        return send(
+          req,
+          res,
+          200,
+          await getFlows(user)
+        );
+      }
+
+      // --------------------------------------------------
+      // AUDIT HISTORY
+      // --------------------------------------------------
+
+      if (
+        path === 'audit' &&
+        req.method === 'GET'
+      ) {
+        return send(
+          req,
+          res,
+          200,
+          await getAudit(user)
+        );
+      }
+
+      // --------------------------------------------------
+      // GRAPHQL EXAMPLES
+      // --------------------------------------------------
+
+      if (
+        path === 'graphql-examples' &&
+        req.method === 'GET'
+      ) {
+        return send(
+          req,
+          res,
+          200,
+          EXAMPLES
+        );
+      }
+
+      // --------------------------------------------------
+      // GRAPHQL API
+      // --------------------------------------------------
+
+      if (
+        path === 'graphql' &&
+        req.method === 'POST'
+      ) {
+        const body = await readBody(req);
+
+        const result = await handleGraphQL(
+          user,
+          body
+        );
+
+        return send(
+          req,
+          res,
+          200,
+          result
+        );
+      }
+
+      // --------------------------------------------------
+      // RESET DATABASE
+      // --------------------------------------------------
+
+      if (
+        path === 'reset' &&
+        req.method === 'POST'
+      ) {
+        const result = await reset(user);
+
+        return send(
+          req,
+          res,
+          200,
+          result
+        );
+      }
+
+      // --------------------------------------------------
+      // LEAD CONVERSION
+      // --------------------------------------------------
+
+      if (
+        path === 'leads' &&
+        id &&
+        parts[3] === 'convert' &&
+        req.method === 'POST'
+      ) {
+        const body = await readBody(req);
+
+        const result = await convertLead(
+          user,
+          id,
+          body
+        );
+
+        return send(
+          req,
+          res,
+          200,
+          result
+        );
+      }
+
+      // --------------------------------------------------
+      // CRM COLLECTIONS
+      // --------------------------------------------------
+
+      const collections = [
+        'leads',
+        'contacts',
+        'accounts',
+        'opportunities',
+        'cases',
+        'tasks'
+      ];
+
+      if (collections.includes(path)) {
+
+        // GET ALL / GET ONE
+        if (req.method === 'GET') {
+          const result = id
+            ? await getOne(user, path, id)
+            : await getAll(
+                user,
+                path,
+                Object.fromEntries(
+                  url.searchParams
+                )
+              );
+
+          return send(
+            req,
+            res,
+            200,
+            result
+          );
+        }
+
+        // CREATE
+        if (
+          !id &&
+          req.method === 'POST'
+        ) {
+          const body = await readBody(req);
+
+          const result = await create(
+            user,
+            path,
+            body
+          );
+
+          return send(
+            req,
+            res,
+            201,
+            result
+          );
+        }
+
+        // UPDATE
+        if (
+          id &&
+          req.method === 'PATCH'
+        ) {
+          const body = await readBody(req);
+
+          const result = await update(
+            user,
+            path,
+            id,
+            body
+          );
+
+          return send(
+            req,
+            res,
+            200,
+            result
+          );
+        }
+
+        // DELETE
+        if (
+          id &&
+          req.method === 'DELETE'
+        ) {
+          const result = await remove(
+            user,
+            path,
+            id
+          );
+
+          return send(
+            req,
+            res,
+            200,
+            result
+          );
+        }
+
+        return send(req, res, 405, {
+          error: 'Method not allowed'
+        });
+      }
+
+      // --------------------------------------------------
+      // UNKNOWN API ROUTE
+      // --------------------------------------------------
+
+      return send(req, res, 404, {
+        error: 'Unknown API endpoint',
+        route: url.pathname
+      });
+
+    } catch (error) {
+      console.error(
+        'API request failed:',
+        error
+      );
+
+      if (res.headersSent) {
+        return res.end();
+      }
+
+      return send(
+        req,
+        res,
+        error.status || 500,
+        {
+          error:
+            error.message ||
+            'Unexpected server error',
+
+          type:
+            error instanceof CRMError
+              ? 'CRMError'
+              : 'ServerError'
+        }
+      );
+    }
+  }
+);
+
+// --------------------------------------------------
+// START SERVER AFTER MYSQL INITIALIZATION
+// --------------------------------------------------
+
+async function startServer() {
+  try {
+    await initializeEngine();
+
+    server.listen(PORT, '127.0.0.1', () => {
+      console.log(`
+----------------------------------------
+CLOUDBRIDGE CRM API STARTED
+----------------------------------------
+
+Backend:
+http://127.0.0.1:${PORT}
+
+Health:
+http://127.0.0.1:${PORT}/api/health
+
+Dashboard:
+http://127.0.0.1:${PORT}/api/overview
+
+Accounts:
+http://127.0.0.1:${PORT}/api/accounts
+
+GraphQL:
+http://127.0.0.1:${PORT}/api/graphql
+
+Frontend:
+http://127.0.0.1:${PORT}/
+
+Database:
+${DATABASE_NAME}
+
+Storage:
+MySQL Relational Database
+
+----------------------------------------
+Server is ready.
+----------------------------------------
+      `);
+    });
+
+  } catch (error) {
+    console.error(
+      'Unable to initialize MySQL CRM:',
+      error
+    );
+
+    process.exitCode = 1;
+  }
+}
+
+// --------------------------------------------------
+// START ONLY WHEN NOT RUNNING TESTS
+// --------------------------------------------------
+
+if (process.env.NODE_ENV !== 'test') {
+  startServer();
+}

@@ -1,0 +1,46 @@
+{
+  "categories": [
+    {
+      "id": "1",
+      "name": "Electronics",
+      "description": "Electronic Products"
+    },
+    {
+      "id": "2",
+      "name": "Accessories",
+      "description": "Accessories Products"
+    },
+    {
+      "id": "3",
+      "name": "Office Supplies",
+      "description": "Office Essential Supplies"
+    },
+    {
+      "id": "p8C4JC-_frE",
+      "name": "Grocery",
+      "description": "Daily needs"
+    }
+  ],
+  "products": [
+    {
+      "id": "1",
+      "name": "Mouse",
+      "categoryId": 1,
+      "category": "Electronics",
+      "price": 500,
+      "stock": 20,
+      "supplierEmail": "supplier@gmail.com",
+      "description": "Wireless Mouse"
+    },
+    {
+      "id": "2",
+      "name": "Table",
+      "categoryId": 0,
+      "category": "Office Supplies",
+      "price": 1800,
+      "stock": 21,
+      "supplierEmail": "table@officesupply.com",
+      "description": "Table for office ODC"
+    }
+  ]
+}

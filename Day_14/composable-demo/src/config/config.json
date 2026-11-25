@@ -1,0 +1,105 @@
+
+{
+  "application": {
+    "name": "VibeCore",
+    "theme": "purple"
+  },
+  "pages": {
+    "dashboard": {
+      "title": "Dashboard",
+      "description": "Your workspace overview",
+      "components": [
+        {
+          "type": "WelcomePanel",
+          "props": {
+            "title": "Hey, welcome back! ✨",
+            "subtitle": "Your business at a glance. Let's make today productive."
+          },
+          "layout": "full"
+        },
+        {
+          "type": "DashboardStats",
+          "props": {},
+          "layout": "full"
+        },
+        {
+          "type": "DashboardInsights",
+          "props": {},
+          "layout": "full"
+        }
+      ]
+    },
+    "employees": {
+      "title": "Employee Management",
+      "description": "Your team, your vibe.",
+      "components": [
+        {
+          "type": "WelcomePanel",
+          "props": {
+            "title": "Meet your amazing team! 👥",
+            "subtitle": "Keep your people and progress organized."
+          },
+          "layout": "full"
+        },
+        {
+          "type": "EmployeeStats",
+          "props": {},
+          "layout": "full"
+        },
+        {
+          "type": "EmployeeTable",
+          "props": {},
+          "layout": "full"
+        }
+      ]
+    },
+    "products": {
+      "title": "Product Management",
+      "description": "Your products, your inventory.",
+      "components": [
+        {
+          "type": "WelcomePanel",
+          "props": {
+            "title": "Your product universe! 🛍️",
+            "subtitle": "Manage your catalogue and monitor stock."
+          },
+          "layout": "full"
+        },
+        {
+          "type": "ProductStats",
+          "props": {},
+          "layout": "full"
+        },
+        {
+          "type": "ProductTable",
+          "props": {},
+          "layout": "full"
+        }
+      ]
+    },
+    "courses": {
+      "title": "Course Management",
+      "description": "Your learning space, your vibe.",
+      "components": [
+        {
+          "type": "WelcomePanel",
+          "props": {
+            "title": "Level up your learning universe! 📚",
+            "subtitle": "Manage courses, trainers and learning programs in one place."
+          },
+          "layout": "full"
+        },
+        {
+          "type": "CourseStats",
+          "props": {},
+          "layout": "full"
+        },
+        {
+          "type": "CourseTable",
+          "props": {},
+          "layout": "full"
+        }
+      ]
+    }
+  }
+}

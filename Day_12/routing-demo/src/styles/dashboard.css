@@ -1,0 +1,20 @@
+.dashboard-card {
+
+  border-radius: 24px;
+
+  overflow: hidden;
+
+  transition:
+    var(--transition);
+
+  box-shadow:
+    var(--shadow);
+}
+
+.dashboard-card:hover {
+
+  transform:
+    translateY(-8px);
+
+  cursor: pointer;
+}

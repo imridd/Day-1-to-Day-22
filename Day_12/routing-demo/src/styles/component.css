@@ -1,0 +1,680 @@
+
+.glass-card {
+  background: #ffffff;
+
+  border: 1px solid #e5e7eb;
+
+  border-radius: var(--border-radius);
+
+  box-shadow: var(--shadow);
+
+  transition: var(--transition);
+}
+
+.glass-card:hover {
+  transform: translateY(-4px);
+}
+
+/* ==================================================
+   NAVBAR
+================================================== */
+/* ==========================================
+   NAVBAR
+========================================== */
+
+.app-navbar {
+  background: #ffffff ;
+
+  min-height: 72px;
+
+  padding: 0.75rem 1.5rem;
+
+  border-bottom: 1px solid #e5e7eb;
+
+  box-shadow:
+    0 2px 8px
+    rgba(
+      15,
+      23,
+      42,
+      0.06
+    );
+}
+
+.navbar-brand-custom {
+  color: #111827 !important;
+
+  font-size: 1.5rem;
+
+  font-weight: 700;
+
+  text-decoration: none;
+}
+
+.navbar-brand-custom:hover {
+  color: var(--primary) !important;
+}
+
+/* ==========================================
+   NAV LINKS
+========================================== */
+
+.nav-item-custom {
+  color: #475569 !important;
+
+  font-weight: 600;
+
+  padding: 0.55rem 1rem !important;
+
+  border-radius: 12px;
+
+  transition: all 0.3s ease;
+
+  margin: 0 2px;
+}
+
+.nav-item-custom:hover {
+  background:
+    rgba(
+      59,
+      130,
+      246,
+      0.08
+    );
+
+  color:
+    var(--primary)
+    !important;
+
+  transform: translateY(-1px);
+}
+
+.active-nav {
+  background:
+    rgba(
+      59,
+      130,
+      246,
+      0.12
+    );
+
+  color:
+    var(--primary)
+    !important;
+
+  font-weight: 700;
+}
+
+/* ==========================================
+   RIGHT SECTION
+========================================== */
+
+.navbar-actions {
+  display: flex;
+
+  align-items: center;
+
+  gap: 12px;
+}
+
+.user-chip {
+  padding:
+    8px 16px;
+
+  border-radius: 999px;
+
+  background: #eff6ff;
+
+  border: 1px solid #bfdbfe;
+
+  font-weight: 600;
+
+  color: #1e293b;
+
+  white-space: nowrap;
+}
+
+/* ==========================================
+   THEME BUTTON
+========================================== */
+
+.theme-btn {
+  min-width: 110px;
+
+  border-radius: 999px !important;
+
+  font-weight: 600 !important;
+
+  border:
+    1px solid #dbeafe !important;
+
+  background:
+    #ffffff !important;
+
+  color:
+    #334155 !important;
+
+  transition:
+    all 0.3s ease;
+}
+
+.theme-btn:hover {
+  background:
+    #f8fafc !important;
+}
+
+/* ==========================================
+   LOGOUT BUTTON
+========================================== */
+
+.logout-btn {
+  border-radius: 999px !important;
+
+  padding:
+    8px 18px;
+
+  font-weight: 600;
+}
+
+/* ==========================================
+   NAVBAR TOGGLER
+========================================== */
+
+.navbar-toggler {
+  border:
+    1px solid #e5e7eb;
+}
+
+.navbar-toggler:focus {
+  box-shadow: none;
+}
+
+/* ==========================================
+   DARK MODE
+========================================== */
+
+body.dark-theme .app-navbar {
+  background: #111827 !important;
+
+  border-bottom:
+    1px solid #374151;
+}
+
+body.dark-theme .navbar-brand-custom {
+  color: white !important;
+}
+
+body.dark-theme .nav-item-custom {
+  color:
+    #cbd5e1 !important;
+}
+
+body.dark-theme .nav-item-custom:hover {
+  background:
+    rgba(
+      255,
+      255,
+      255,
+      0.08
+    );
+
+  color:
+    white !important;
+}
+
+body.dark-theme .active-nav {
+  background:
+    rgba(
+      59,
+      130,
+      246,
+      0.25
+    );
+
+  color:
+    white !important;
+}
+
+body.dark-theme .user-chip {
+  background:
+    #1e293b;
+
+  border:
+    1px solid #334155;
+
+  color:
+    white;
+}
+
+body.dark-theme .theme-btn {
+  background:
+    #1e293b !important;
+
+  border:
+    1px solid #374151 !important;
+
+  color:
+    white !important;
+}
+
+body.dark-theme .navbar-toggler {
+  border:
+    1px solid #475569;
+}
+/* ==================================================
+   BUTTONS
+================================================== */
+
+.app-btn {
+
+  border-radius: 50px;
+
+  font-weight: 600;
+
+  transition:
+    var(--transition);
+}
+
+.app-btn:hover {
+
+  transform:
+    translateY(-2px);
+
+  box-shadow:
+    0 12px 20px
+    rgba(
+      59,
+      130,
+      246,
+      0.15
+    );
+}
+
+/* ==================================================
+   INPUTS
+================================================== */
+
+.form-control,
+.form-select {
+
+  min-height: 48px;
+
+  border-radius: 12px;
+
+  border:
+    1px solid #dbe3f5;
+
+  background: white;
+}
+
+.form-control:focus,
+.form-select:focus {
+
+  border-color:
+    var(--primary);
+
+  box-shadow:
+    0 0 8px
+    rgba(
+      59,
+      130,
+      246,
+      0.2
+    );
+}
+
+/* ==================================================
+   TABLES
+================================================== */
+
+.app-table {
+
+  overflow: hidden;
+
+  border-radius: 18px;
+}
+
+.app-table thead {
+
+  background:
+    var(--primary);
+
+  color: white;
+}
+
+.table {
+
+  margin-bottom: 0;
+}
+
+/* ==================================================
+   DASHBOARD
+================================================== */
+
+.dashboard-card {
+  transition:
+    all 0.3s ease;
+
+  min-height: 160px;
+}
+
+.dashboard-card:hover {
+
+  transform:
+    translateY(-8px);
+
+  box-shadow:
+    0 16px 30px
+    rgba(
+      59,
+      130,
+      246,
+      0.15
+    );
+}
+
+.dashboard-card h6 {
+
+  font-size: 0.9rem;
+
+  color: #64748b;
+}
+
+.dashboard-card h2 {
+
+  font-size: 2rem;
+
+  font-weight: 700;
+}
+
+.dashboard-card i {
+
+  color:
+    var(--primary);
+}
+
+.dashboard-title {
+
+  font-size: 2rem;
+
+  font-weight: 700;
+}
+
+.dashboard-subtitle {
+
+  color: #6b7280;
+}
+
+.quick-stat-card {
+
+  transition:
+    var(--transition);
+}
+
+.quick-stat-card:hover {
+
+  transform:
+    translateY(-5px);
+}
+
+/* ==================================================
+   REPORTS
+================================================== */
+
+.report-card {
+
+  transition:
+    var(--transition);
+}
+
+.report-card:hover {
+
+  transform:
+    translateY(-6px);
+
+  box-shadow:
+    0 14px 30px
+    rgba(
+      59,
+      130,
+      246,
+      0.15
+    );
+}
+
+.report-icon {
+
+  font-size: 3rem;
+}
+
+.export-center {
+
+  background:
+    linear-gradient(
+      135deg,
+      rgba(
+        59,
+        130,
+        246,
+        0.06
+      ),
+      rgba(
+        99,
+        102,
+        241,
+        0.08
+      )
+    );
+}
+
+/* ==================================================
+   CHARTS
+================================================== */
+
+.chart-card {
+
+  padding: 20px;
+
+  border-radius: 20px;
+
+  background: white;
+
+  box-shadow:
+    var(--shadow);
+
+  transition:
+    var(--transition);
+}
+
+.chart-card:hover {
+
+  transform:
+    translateY(-4px);
+}
+
+.chart-wrapper {
+
+  width: 100%;
+}
+
+.chart-title {
+
+  font-size: 1.2rem;
+
+  font-weight: 700;
+
+  color: #111827;
+}
+
+/* ==================================================
+   ICONS
+================================================== */
+
+.bi {
+
+  transition:
+    var(--transition);
+}
+
+.glass-card:hover .bi {
+
+  transform:
+    scale(1.08);
+}
+
+/* ==================================================
+   ANIMATION
+================================================== */
+
+.fade-up {
+
+  animation:
+    fadeUp 0.5s ease;
+}
+
+@keyframes fadeUp {
+
+  from {
+
+    opacity: 0;
+
+    transform:
+      translateY(20px);
+  }
+
+  to {
+
+    opacity: 1;
+
+    transform:
+      translateY(0);
+  }
+}
+
+/* ==================================================
+   DARK MODE
+================================================== */
+
+body.dark-theme {
+
+  background:
+    #0f172a;
+
+  color:
+    #f8fafc;
+}
+
+body.dark-theme .app-navbar {
+
+  background:
+    #111827
+    !important;
+
+  border-bottom:
+    1px solid #1f2937;
+}
+
+body.dark-theme .navbar-brand-custom {
+
+  color:
+    #ffffff
+    !important;
+}
+
+body.dark-theme .nav-item-custom {
+
+  color:
+    #cbd5e1
+    !important;
+}
+
+body.dark-theme .nav-item-custom:hover {
+
+  background:
+    rgba(
+      255,
+      255,
+      255,
+      0.08
+    );
+
+  color:
+    #ffffff
+    !important;
+}
+
+body.dark-theme .glass-card,
+body.dark-theme .chart-card {
+
+  background:
+    #1e293b
+    !important;
+
+  color:
+    white
+    !important;
+
+  border:
+    1px solid
+    #334155;
+}
+
+body.dark-theme .dashboard-card h2,
+body.dark-theme .chart-title {
+
+  color:
+    white;
+}
+
+body.dark-theme .dashboard-subtitle,
+body.dark-theme .text-muted {
+
+  color:
+    #cbd5e1
+    !important;
+}
+
+body.dark-theme .form-control,
+body.dark-theme .form-select {
+
+  background:
+    #334155;
+
+  color:
+    white;
+
+  border:
+    1px solid
+    #475569;
+}
+
+body.dark-theme .form-control::placeholder {
+
+  color:
+    #cbd5e1;
+}
+
+body.dark-theme .table {
+
+  color:
+    white;
+}
+
+body.dark-theme .user-chip {
+
+  background:
+    #334155;
+
+  color:
+    white;
+}
+.auth-page {
+  background:
+    linear-gradient(
+      180deg,
+      #f8fafc,
+      #eef2f7
+    );
+
+  min-height: 100vh;
+}

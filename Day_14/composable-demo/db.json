@@ -1,0 +1,149 @@
+{
+  "employees": [
+    {
+      "id": "101",
+      "name": "Ridha",
+      "email": "ridha@gmail.com",
+      "department": "Engineering",
+      "role": "Frontend Developer",
+      "status": "Active"
+    },
+    {
+      "id": "102",
+      "name": "Janet",
+      "email": "janet@gmail.com",
+      "department": "Design",
+      "role": "UI/UX Designer",
+      "status": "Active"
+    },
+    {
+      "id": "103",
+      "name": "Dharani",
+      "email": "dharani@gmail.com",
+      "department": "Marketing",
+      "role": "Marketing Executive",
+      "status": "On Leave"
+    },
+    {
+      "id": "104",
+      "name": "Kavitha",
+      "email": "kavitha@gmail.com",
+      "department": "Engineering",
+      "role": "Backend Developer",
+      "status": "Active"
+    },
+    {
+      "name": "Guna",
+      "email": "guna@gmail.com",
+      "department": "HR",
+      "role": "HR Executive",
+      "status": "Inactive",
+      "id": "105"
+    },
+    {
+      "name": "Gandhi",
+      "email": "gandhi@gmail.com",
+      "department": "HR",
+      "role": "Lead",
+      "status": "On Leave",
+      "id": "j8-ZAIl_lUI"
+    },
+    {
+      "name": "Durga",
+      "email": "durga@gmail.com",
+      "department": "Finance",
+      "role": "Tester",
+      "status": "On Leave",
+      "id": "MFSOwQ9IzPA"
+    }
+  ],
+  "products": [
+    {
+      "id": "201",
+      "name": "Wireless Headphones",
+      "category": "Electronics",
+      "price": 2499,
+      "stock": 45,
+      "status": "Available"
+    },
+    {
+      "id": "202",
+      "name": "Smart Watch",
+      "category": "Electronics",
+      "price": 3999,
+      "stock": 20,
+      "status": "Available"
+    },
+    {
+      "name": "Travel Backpack",
+      "category": "Accessories",
+      "price": 1499,
+      "stock": 8,
+      "status": "Available",
+      "id": "203"
+    },
+    {
+      "name": "Frock",
+      "category": "Fashion",
+      "price": 397,
+      "stock": 4,
+      "status": "Available",
+      "id": "5YBPRCUlvp0"
+    },
+    {
+      "name": "Denim top",
+      "category": "Fashion",
+      "price": 499,
+      "stock": 0,
+      "status": "Out of Stock",
+      "id": "i8xOnTV5860"
+    }
+  ],
+  "courses": [
+    {
+      "id": "301",
+      "name": "React Fundamentals",
+      "trainer": "Krishna",
+      "category": "Development",
+      "duration": "6 Weeks",
+      "price": 4999,
+      "status": "Active"
+    },
+    {
+      "id": "302",
+      "name": "UI/UX Design",
+      "trainer": "Guna",
+      "category": "Design",
+      "duration": "4 Weeks",
+      "price": 3499,
+      "status": "Active"
+    },
+    {
+      "id": "303",
+      "name": "Java Programming",
+      "trainer": "Durga",
+      "category": "Development",
+      "duration": "8 Weeks",
+      "price": 5999,
+      "status": "Inactive"
+    },
+    {
+      "name": "Javascript A-Z",
+      "trainer": "Janet",
+      "category": "Development",
+      "duration": "7 weeks",
+      "price": 3000,
+      "status": "Active",
+      "id": "bN3Qk_huteU"
+    },
+    {
+      "name": "Express Fundamentals",
+      "trainer": "Mohan",
+      "category": "Development",
+      "duration": "2 weeks",
+      "price": 4000,
+      "status": "Active",
+      "id": "7gG5o7an6Us"
+    }
+  ]
+}

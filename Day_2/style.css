@@ -1,0 +1,32 @@
+h1,h2 {
+    color: blue;
+}
+
+span {
+    color: red;
+}
+
+.submit-btn {
+    background-color: blue;
+    color: white;
+}
+
+.submit-btn:focus-visible {
+    outline: 3px solid violet;
+}
+
+table {
+    width: 400px;
+}
+
+th,
+td {
+    text-align: center;
+}
+
+th {
+    background-color: gray;
+}
+tbody tr:nth-child(even){
+    background-color: gray;
+}

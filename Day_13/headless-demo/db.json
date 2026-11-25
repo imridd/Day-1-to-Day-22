@@ -1,0 +1,216 @@
+{
+  "employees": [
+    {
+      "id": "cElu2D9HASs",
+      "name": "Ridha",
+      "email": "ridha@gmail.com",
+      "department": "IT",
+      "designation": "Software Engineer",
+      "salary": 65000,
+      "joiningDate": "2023-02-11"
+    },
+    {
+      "id": "NsiY5nf1o0M",
+      "name": "Janet",
+      "email": "janet@gmail.com",
+      "department": "Marketing",
+      "designation": "Assistant",
+      "salary": 59999,
+      "joiningDate": "2024-05-16"
+    },
+    {
+      "id": "e4NocCdB4FY",
+      "name": "Dharani",
+      "email": "dharani@gmail.com",
+      "department": "Marketing",
+      "designation": "Tester",
+      "salary": "40000",
+      "joiningDate": "2023-08-05"
+    },
+    {
+      "id": "fSeTdJrkrvw",
+      "name": "Kavitha",
+      "email": "kavitha@gmail.com",
+      "department": "Salesforce",
+      "designation": "Developer",
+      "salary": "70000",
+      "joiningDate": "2022-04-08"
+    },
+    {
+      "id": "QxJP3-oEaX8",
+      "name": "Guna",
+      "email": "guna@gmail.com",
+      "department": "DevOps",
+      "designation": "Associate",
+      "salary": "50000",
+      "joiningDate": "2021-12-09"
+    },
+    {
+      "id": "zgzjaQCDuJI",
+      "name": "Durga",
+      "email": "durga@gmail.com",
+      "department": "Cyber Security",
+      "designation": "Tester",
+      "salary": "50000",
+      "joiningDate": "2025-11-20"
+    },
+    {
+      "id": "K8U_TAZvYG4",
+      "name": "Barath Raj",
+      "email": "barath-raj@gmail.com",
+      "department": "IT",
+      "designation": "Software Engineer",
+      "salary": "55000",
+      "joiningDate": "2024-02-16"
+    },
+    {
+      "id": "zynZcz3mTZI",
+      "name": "Sanjai Paul",
+      "email": "sanjai-paul@gmail.com",
+      "department": "Cyber Security",
+      "designation": "Tester",
+      "salary": 55000,
+      "joiningDate": "2024-12-27"
+    },
+    {
+      "id": "PQlEBFRlLUA",
+      "name": "Gandhi",
+      "email": "gandhi@gmail.com",
+      "department": "IT",
+      "designation": "Admin",
+      "salary": 65000,
+      "joiningDate": "2023-05-12"
+    }
+  ],
+  "products": [
+    {
+      "id": "2",
+      "name": "Monitor",
+      "category": "Electronics",
+      "price": 15000,
+      "stock": 20,
+      "brand": "LG",
+      "createdDate": "2026-01-05"
+    },
+    {
+      "id": "3",
+      "name": "Keyboard",
+      "category": "Accessories",
+      "price": 1500,
+      "stock": 50
+    },
+    {
+      "id": "4",
+      "name": "Mouse",
+      "category": "Accessories",
+      "price": 700,
+      "stock": 80
+    },
+    {
+      "id": "x23CCjUe5-w",
+      "name": "Scale",
+      "category": "Stationery",
+      "price": "23",
+      "stock": "27"
+    },
+    {
+      "id": "UA9fnAY1WxY",
+      "name": "Sunscreen",
+      "category": "Beauty",
+      "price": "499",
+      "stock": "23"
+    },
+    {
+      "sno": 2,
+      "id": "f1gJ9gL69XM",
+      "name": "Milk",
+      "category": "Grocery",
+      "price": "25",
+      "stock": "8"
+    },
+    {
+      "id": "XWq6FV1vpGs",
+      "name": "Office Chair",
+      "category": "Furniture",
+      "price": "2500",
+      "stock": "30"
+    },
+    {
+      "sno": 3,
+      "id": "-HkYbJfVemw",
+      "name": "Toner",
+      "category": "Beauty",
+      "price": 200,
+      "stock": 20
+    },
+    {
+      "id": "CzmZY1TdJkk",
+      "name": "Egg",
+      "category": "Grocery",
+      "price": 8,
+      "stock": 30
+    }
+  ],
+  "courses": [
+    {
+      "id": "1",
+      "name": "Java Full Stack",
+      "trainer": "Ridha",
+      "duration": 3,
+      "fee": 15000,
+      "enrolledStudents": 42,
+      "description": "Complete Java Full Stack Course"
+    },
+    {
+      "id": "3",
+      "name": "Python Programming",
+      "trainer": "Dharani",
+      "duration": 4,
+      "fee": 10000,
+      "enrolledStudents": 50,
+      "description": "Python from Beginner to Advanced"
+    },
+    {
+      "id": "4",
+      "name": "Angular Development",
+      "trainer": "Mohan",
+      "duration": 3,
+      "fee": 14000,
+      "enrolledStudents": "29",
+      "description": "Enterprise Angular Development"
+    },
+    {
+      "id": "8F6wsfFW58I",
+      "name": "Javascript A to Z",
+      "trainer": "Janet",
+      "duration": 5,
+      "fee": "25000",
+      "enrolledStudents": "17"
+    },
+    {
+      "id": "xGbl7U9dpKw",
+      "name": "Modern Web Design",
+      "trainer": "Guna",
+      "duration": 1,
+      "fee": "20000",
+      "enrolledStudents": "20"
+    },
+    {
+      "id": "4YMrn39kmLc",
+      "name": "React Essentials",
+      "trainer": "Krishna",
+      "duration": 2,
+      "fee": 30000,
+      "enrolledStudents": 19
+    },
+    {
+      "id": "jA5S7YmMvHw",
+      "name": "Css Styling",
+      "trainer": "Krishna",
+      "duration": 3,
+      "fee": 30000,
+      "enrolledStudents": 26
+    }
+  ],
+  "$schema": "./node_modules/json-server/schema.json"
+}

@@ -1,0 +1,13 @@
+{
+  "appName": "Orbit CMS",
+  "defaultNavigation": "top",
+  "supportedComponents": [
+    {"type":"hero","label":"Hero","description":"A bold introduction section"},
+    {"type":"card","label":"Cards","description":"Flexible card collection"},
+    {"type":"table","label":"Data table","description":"JSON-powered data table"},
+    {"type":"text","label":"Text","description":"Rich content section"},
+    {"type":"image","label":"Image","description":"Responsive image block"},
+    {"type":"footer","label":"Footer","description":"Configurable page footer"}
+  ],
+  "layouts": ["top","left"]
+}

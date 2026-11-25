@@ -1,0 +1,21 @@
+ProductId,ProductName,Price,Quantity,Category
+P101,Face Wash,298.8,12,Skincare
+P102,Moisturizer,559.5,8,Skincare
+P103,Sunscreen SPF50,699.9,20,Skincare
+P104,Shampoo,369.25,15,Haircare
+P105,Hair Serum,597.9,6,Haircare
+P106,Hair Oil,249.5,25,Haircare
+P107,Body Lotion,399.0,10,Skincare
+P108,Notebook,120.0,30,Stationery
+P109,Pen,15.8,50,Stationery
+P110,Pencil Box,180.0,18,Stationery
+P111,Stapler,25.8,7,Stationery
+P112,Conditioner,349.0,14,Haircare
+P113,Comb,49.5,40,Haircare
+P114,Lip Balm,99.0,22,Skincare
+P115,Hand Cream,199.0,16,Skincare
+P116,Eraser,10.5,75,Stationery
+P117,Marker Pen,35.0,28,Stationery
+P118,Glue Stick,45.0,20,Stationery
+P119,Highlighter,55.5,24,Stationery
+P120,Face Scrub,329.9,11,Skincare

@@ -1,0 +1,800 @@
+body {
+  margin: 0;
+  background-color: #f7f5fc;
+  font-family: "Segoe UI", sans-serif;
+  color: #29213d;
+}
+
+.top-navbar {
+  background: white;
+  border-bottom: 1px solid #eee8f7;
+}
+
+.brand-highlight {
+  color: #8b5cf6;
+}
+
+.profile-avatar {
+  width: 40px;
+  height: 40px;
+  border-radius: 50%;
+  background: #e9ddff;
+  color: #7138c8;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-weight: bold;
+}
+
+
+.sidebar {
+  position: relative;
+  z-index: 10;
+  min-height: 100%;
+  background: #ffffff;
+}
+
+.sidebar-link {
+  display: flex;
+  width: 100%;
+  text-decoration: none !important;
+  color: #81758f !important;
+  padding: 13px 15px !important;
+  border-radius: 14px !important;
+  font-weight: 600;
+  cursor: pointer;
+  transition: all 0.2s ease;
+}
+
+.sidebar-link:hover {
+  color: #7c3aed !important;
+  background: #f3edff !important;
+}
+
+.sidebar-link.active {
+  color: #ffffff !important;
+  background: linear-gradient(135deg, #8b5cf6, #ec4899) !important;
+  box-shadow: 0 6px 16px rgba(139, 92, 246, 0.2);
+}
+
+.main-content {
+  padding: 25px;
+}
+
+.content-wrapper {
+  background: white;
+  border-radius: 22px;
+  padding: 35px;
+  min-height: 250px;
+  box-shadow: 0 5px 25px rgba(70, 40, 110, 0.05);
+}
+
+@media (max-width: 991px) {
+  .sidebar-column,
+  .sidebar {
+    min-height: auto;
+  }
+
+  .sidebar-bottom {
+    display: none;
+  }
+
+  .main-content {
+    padding: 15px;
+  }
+}
+
+/* Welcome Panel */
+.welcome-panel {
+  background: linear-gradient(120deg, #f0eaff, #fce7f3);
+  overflow: hidden;
+}
+
+.welcome-panel h2 {
+  color: #32145f;
+  font-size: clamp(1.5rem, 3vw, 2.2rem);
+}
+
+.welcome-emoji {
+  font-size: 3.5rem;
+  background: rgba(255, 255, 255, 0.65);
+  width: 85px;
+  height: 85px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: 25px;
+}
+
+/* Statistics Cards */
+.stats-card {
+  transition: transform 0.2s ease, box-shadow 0.2s ease;
+  background: #ffffff;
+}
+
+.stats-card:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 12px 28px rgba(80, 40, 130, 0.12) !important;
+}
+
+.stats-icon {
+  width: 55px;
+  height: 55px;
+  border-radius: 18px;
+  background: #f0eaff;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 1.7rem;
+}
+
+/* Employee Module */
+
+.employee-table-card {
+  background: #ffffff;
+}
+
+.employee-table thead th {
+  color: #81758f;
+  font-size: 0.8rem;
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+  border-bottom: 1px solid #eee8f5;
+  white-space: nowrap;
+  padding: 16px 12px;
+}
+
+.employee-table tbody td {
+  padding: 18px 12px;
+  border-bottom: 1px solid #f3eff7;
+  white-space: nowrap;
+}
+
+.employee-table tbody tr:last-child td {
+  border-bottom: none;
+}
+
+/* Product Module */
+
+.product-table-card {
+  background: #ffffff;
+}
+
+.product-table thead th {
+  color: #81758f;
+  font-size: 0.8rem;
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+  border-bottom: 1px solid #eee8f5;
+  white-space: nowrap;
+  padding: 16px 12px;
+}
+
+.product-table tbody td {
+  padding: 18px 12px;
+  border-bottom: 1px solid #f3eff7;
+  white-space: nowrap;
+}
+
+.product-table tbody tr:last-child td {
+  border-bottom: none;
+}
+
+.sidebar-link {
+  text-decoration: none;
+  color: #81758f;
+  padding: 13px 15px;
+  border-radius: 14px;
+  font-weight: 600;
+  transition: all 0.2s ease;
+}
+
+.sidebar-link:hover {
+  color: #7c3aed;
+  background: #f3edff;
+  transform: translateX(3px);
+}
+
+.sidebar-link.active {
+  color: #ffffff;
+  background: linear-gradient(135deg, #8b5cf6, #ec4899);
+  box-shadow: 0 6px 16px rgba(139, 92, 246, 0.2);
+}
+
+/* =================================
+   VIBECORE GLOBAL THEME SYSTEM
+================================= */
+
+:root {
+  --app-bg: #f7f5fc;
+  --surface: #ffffff;
+  --surface-secondary: #faf8ff;
+  --text-primary: #29213d;
+  --text-secondary: #81758f;
+  --border-color: #eee8f7;
+  --table-border: #f3eff7;
+  --hover-bg: #f3edff;
+  --input-bg: #faf8ff;
+  --shadow-color: rgba(70, 40, 110, 0.05);
+}
+
+html[data-theme="dark"] {
+  --app-bg: #171329;
+  --surface: #231d38;
+  --surface-secondary: #2c2443;
+  --text-primary: #f5f0ff;
+  --text-secondary: #b5a9cb;
+  --border-color: #3b3153;
+  --table-border: #3b3153;
+  --hover-bg: #392b56;
+  --input-bg: #2c2443;
+  --shadow-color: rgba(0, 0, 0, 0.18);
+}
+
+/* BODY */
+
+body {
+  background-color: var(--app-bg) !important;
+  color: var(--text-primary);
+  transition: background-color 0.25s ease, color 0.25s ease;
+}
+
+/* NAVBAR */
+
+.top-navbar {
+  background: var(--surface) !important;
+  border-bottom: 1px solid var(--border-color);
+  box-shadow: 0 3px 18px var(--shadow-color);
+  transition: background 0.25s ease;
+}
+
+.top-navbar .navbar-brand {
+  color: var(--text-primary);
+}
+
+.brand-icon {
+  width: 39px;
+  height: 39px;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: 13px;
+  color: white;
+  background: linear-gradient(135deg, #8b5cf6, #ec4899);
+  box-shadow: 0 5px 14px rgba(139, 92, 246, 0.22);
+}
+
+.brand-highlight {
+  color: #8b5cf6;
+}
+
+/* NAVBAR SEARCH */
+
+.navbar-search {
+  width: 245px;
+}
+
+.navbar-search .input-group-text,
+.navbar-search .form-control {
+  background: var(--input-bg);
+  color: var(--text-primary);
+  border-color: var(--border-color);
+}
+
+.navbar-search .form-control::placeholder {
+  color: var(--text-secondary);
+}
+
+.navbar-search .form-control:focus {
+  background: var(--input-bg);
+  color: var(--text-primary);
+  border-color: #a78bfa;
+  box-shadow: 0 0 0 3px rgba(139, 92, 246, 0.12);
+}
+
+/* THEME AND NOTIFICATION BUTTONS */
+
+.theme-toggle,
+.navbar-icon-button {
+  width: 42px;
+  height: 42px;
+  border: 1px solid var(--border-color) !important;
+  background: var(--surface-secondary) !important;
+  border-radius: 13px !important;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 17px;
+  transition: all 0.2s ease;
+}
+
+.theme-toggle:hover,
+.navbar-icon-button:hover {
+  background: var(--hover-bg) !important;
+  transform: translateY(-2px);
+}
+
+.notification-dot {
+  position: absolute;
+  width: 8px;
+  height: 8px;
+  top: 8px;
+  right: 8px;
+  border-radius: 50%;
+  background: #ec4899;
+  border: 1px solid var(--surface);
+}
+
+/* PROFILE */
+
+.profile-toggle {
+  border: 1px solid var(--border-color) !important;
+  background: var(--surface-secondary) !important;
+  border-radius: 14px !important;
+  padding: 4px 10px 4px 5px !important;
+  color: var(--text-primary) !important;
+}
+
+.profile-toggle::after {
+  margin-left: 5px;
+}
+
+.profile-avatar {
+  width: 38px;
+  height: 38px;
+  border-radius: 50%;
+  background: linear-gradient(135deg, #8b5cf6, #ec4899);
+  color: white;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-weight: 700;
+}
+
+.profile-name {
+  color: var(--text-primary);
+  font-weight: 700;
+  font-size: 13px;
+}
+
+.profile-role {
+  color: var(--text-secondary);
+  font-size: 11px;
+}
+
+.profile-menu {
+  background: var(--surface);
+  border: 1px solid var(--border-color) !important;
+}
+
+.profile-menu .dropdown-item {
+  color: var(--text-primary);
+  padding: 10px 15px;
+}
+
+.profile-menu .dropdown-item:hover {
+  background: var(--hover-bg);
+}
+
+/* SIDEBAR */
+
+.sidebar {
+  background: var(--surface) !important;
+  color: var(--text-primary);
+  transition: background 0.25s ease;
+}
+
+.sidebar-link {
+  color: var(--text-secondary) !important;
+}
+
+.sidebar-link:hover {
+  background: var(--hover-bg) !important;
+  color: #8b5cf6 !important;
+}
+
+/* KEEP ACTIVE SIDEBAR GRADIENT */
+
+.sidebar-link.active {
+  color: white !important;
+  background: linear-gradient(135deg, #8b5cf6, #ec4899) !important;
+}
+
+/* MAIN CONTENT */
+
+.main-content {
+  color: var(--text-primary);
+}
+
+.content-wrapper {
+  background: var(--surface);
+  color: var(--text-primary);
+  box-shadow: 0 5px 25px var(--shadow-color);
+}
+
+/* CARDS */
+
+.card,
+.stats-card,
+.employee-table-card,
+.product-table-card {
+  background: var(--surface) !important;
+  color: var(--text-primary);
+  border-color: var(--border-color) !important;
+}
+
+.card-body,
+.card-header,
+.card-footer {
+  color: var(--text-primary);
+  border-color: var(--border-color);
+}
+
+/* WELCOME PANEL */
+
+.welcome-panel {
+  background: linear-gradient(120deg, #f0eaff, #fce7f3);
+}
+
+html[data-theme="dark"] .welcome-panel {
+  background: linear-gradient(120deg, #352653, #49253f);
+}
+
+html[data-theme="dark"] .welcome-panel h2 {
+  color: #f5eaff;
+}
+
+html[data-theme="dark"] .welcome-emoji {
+  background: rgba(255, 255, 255, 0.12);
+}
+
+/* TABLES */
+
+.employee-table,
+.product-table {
+  color: var(--text-primary);
+  border-color: var(--table-border);
+}
+
+.employee-table thead th,
+.product-table thead th {
+  color: var(--text-secondary);
+  border-color: var(--border-color);
+}
+
+.employee-table tbody td,
+.product-table tbody td {
+  color: var(--text-primary);
+  border-color: var(--table-border);
+}
+
+.employee-table tbody tr,
+.product-table tbody tr {
+  background: var(--surface);
+}
+
+/* FORMS */
+
+.form-control,
+.form-select {
+  background-color: var(--input-bg);
+  color: var(--text-primary);
+  border-color: var(--border-color);
+}
+
+.form-control:focus,
+.form-select:focus {
+  background-color: var(--input-bg);
+  color: var(--text-primary);
+  border-color: #a78bfa;
+  box-shadow: 0 0 0 3px rgba(139, 92, 246, 0.12);
+}
+
+.form-control::placeholder {
+  color: var(--text-secondary);
+}
+
+.form-label {
+  color: var(--text-primary);
+}
+
+/* MODALS AND DROPDOWNS */
+
+.modal-content,
+.dropdown-menu {
+  background: var(--surface);
+  color: var(--text-primary);
+  border-color: var(--border-color);
+}
+
+.modal-header,
+.modal-footer {
+  border-color: var(--border-color);
+}
+
+.modal-title,
+.dropdown-item {
+  color: var(--text-primary);
+}
+
+.dropdown-item:hover {
+  background: var(--hover-bg);
+  color: var(--text-primary);
+}
+
+/* COMMON TEXT */
+
+.text-secondary {
+  color: var(--text-secondary) !important;
+}
+
+html[data-theme="dark"] .text-dark {
+  color: var(--text-primary) !important;
+}
+
+html[data-theme="dark"] .bg-white {
+  background-color: var(--surface) !important;
+}
+
+/* RESPONSIVE NAVBAR */
+
+@media (max-width: 575px) {
+  .top-navbar .navbar-brand {
+    font-size: 1.15rem !important;
+  }
+
+  .profile-toggle {
+    padding: 3px !important;
+  }
+}
+
+/* =====================================
+   VIBECORE TABLE - LIGHT & DARK THEME
+===================================== */
+
+/* Common table wrapper */
+.employee-table-card,
+.product-table-card {
+  background: var(--surface) !important;
+  color: var(--text-primary) !important;
+  border: 1px solid var(--border-color) !important;
+}
+
+/* Bootstrap table variables */
+.employee-table,
+.product-table {
+  --bs-table-bg: var(--surface);
+  --bs-table-color: var(--text-primary);
+  --bs-table-border-color: var(--table-border);
+  --bs-table-striped-bg: var(--surface-secondary);
+  --bs-table-striped-color: var(--text-primary);
+  --bs-table-hover-bg: var(--hover-bg);
+  --bs-table-hover-color: var(--text-primary);
+
+  background-color: var(--surface) !important;
+  color: var(--text-primary) !important;
+  border-color: var(--table-border) !important;
+}
+
+/* Table heading */
+.employee-table thead th,
+.product-table thead th {
+  background-color: var(--surface-secondary) !important;
+  color: var(--text-secondary) !important;
+  border-color: var(--border-color) !important;
+}
+
+/* Table body cells */
+.employee-table tbody td,
+.product-table tbody td {
+  background-color: var(--surface) !important;
+  color: var(--text-primary) !important;
+  border-color: var(--table-border) !important;
+}
+
+/* Hover effect */
+.employee-table tbody tr:hover td,
+.product-table tbody tr:hover td {
+  background-color: var(--hover-bg) !important;
+  color: var(--text-primary) !important;
+}
+
+/* Table text and muted labels */
+html[data-theme="dark"] .employee-table .text-muted,
+html[data-theme="dark"] .product-table .text-muted {
+  color: var(--text-secondary) !important;
+}
+
+/* Dark theme table wrapper */
+html[data-theme="dark"] .employee-table-card,
+html[data-theme="dark"] .product-table-card {
+  background: var(--surface) !important;
+  color: var(--text-primary) !important;
+}
+
+/* Pagination, if present */
+html[data-theme="dark"] .page-link {
+  background-color: var(--surface-secondary);
+  color: var(--text-primary);
+  border-color: var(--border-color);
+}
+
+
+/* =========================================
+   VIBECORE - DARK MODE VISIBILITY FIX
+========================================= */
+
+/* Global text */
+html[data-theme="dark"] body {
+  color: var(--text-primary) !important;
+}
+
+html[data-theme="dark"] .main-content,
+html[data-theme="dark"] .content-wrapper,
+html[data-theme="dark"] .card,
+html[data-theme="dark"] .card-body,
+html[data-theme="dark"] .card-header,
+html[data-theme="dark"] .card-footer {
+  color: var(--text-primary);
+}
+
+/* Bootstrap text utilities */
+html[data-theme="dark"] .text-dark,
+html[data-theme="dark"] .text-black,
+html[data-theme="dark"] .text-body {
+  color: var(--text-primary) !important;
+}
+
+html[data-theme="dark"] .text-muted,
+html[data-theme="dark"] .text-secondary {
+  color: var(--text-secondary) !important;
+}
+
+/* Background utilities */
+html[data-theme="dark"] .bg-white,
+html[data-theme="dark"] .bg-light {
+  background-color: var(--surface) !important;
+}
+
+/* Navbar */
+html[data-theme="dark"] .top-navbar,
+html[data-theme="dark"] .navbar {
+  background-color: var(--surface) !important;
+  color: var(--text-primary);
+}
+
+html[data-theme="dark"] .navbar-brand,
+html[data-theme="dark"] .navbar-nav .nav-link {
+  color: var(--text-primary);
+}
+
+/* Sidebar */
+html[data-theme="dark"] .sidebar {
+  background-color: var(--surface) !important;
+}
+
+html[data-theme="dark"] .sidebar h6 {
+  color: var(--text-secondary) !important;
+}
+
+/* Stats cards and icons */
+html[data-theme="dark"] .stats-card,
+html[data-theme="dark"] .stats-card .card-body {
+  background-color: var(--surface) !important;
+  color: var(--text-primary) !important;
+}
+
+html[data-theme="dark"] .stats-icon {
+  background-color: var(--surface-secondary);
+  color: var(--text-primary);
+}
+
+/* Welcome panel */
+html[data-theme="dark"] .welcome-panel {
+  background: linear-gradient(120deg, #352653, #49253f) !important;
+  color: var(--text-primary);
+}
+
+html[data-theme="dark"] .welcome-panel h2,
+html[data-theme="dark"] .welcome-panel p {
+  color: var(--text-primary) !important;
+}
+
+html[data-theme="dark"] .welcome-emoji {
+  background: rgba(255, 255, 255, 0.12);
+  color: var(--text-primary);
+}
+
+/* Employee, Product and Course tables */
+html[data-theme="dark"] .employee-table-card,
+html[data-theme="dark"] .product-table-card,
+html[data-theme="dark"] .course-table-card {
+  background-color: var(--surface) !important;
+  color: var(--text-primary) !important;
+  border-color: var(--border-color) !important;
+}
+
+html[data-theme="dark"] .employee-table,
+html[data-theme="dark"] .product-table,
+html[data-theme="dark"] .course-table {
+  --bs-table-bg: var(--surface);
+  --bs-table-color: var(--text-primary);
+  --bs-table-border-color: var(--table-border);
+  --bs-table-striped-bg: var(--surface-secondary);
+  --bs-table-striped-color: var(--text-primary);
+  --bs-table-hover-bg: var(--hover-bg);
+  --bs-table-hover-color: var(--text-primary);
+
+  background-color: var(--surface) !important;
+  color: var(--text-primary) !important;
+}
+
+html[data-theme="dark"] .employee-table th,
+html[data-theme="dark"] .product-table th,
+html[data-theme="dark"] .course-table th {
+  background-color: var(--surface-secondary) !important;
+  color: var(--text-secondary) !important;
+  border-color: var(--border-color) !important;
+}
+
+html[data-theme="dark"] .employee-table td,
+html[data-theme="dark"] .product-table td,
+html[data-theme="dark"] .course-table td {
+  background-color: var(--surface) !important;
+  color: var(--text-primary) !important;
+  border-color: var(--table-border) !important;
+}
+
+/* Forms */
+html[data-theme="dark"] .form-label,
+html[data-theme="dark"] .form-check-label {
+  color: var(--text-primary) !important;
+}
+
+html[data-theme="dark"] .form-control,
+html[data-theme="dark"] .form-select {
+  background-color: var(--input-bg) !important;
+  color: var(--text-primary) !important;
+  border-color: var(--border-color) !important;
+}
+
+html[data-theme="dark"] .form-control::placeholder {
+  color: var(--text-secondary) !important;
+}
+
+html[data-theme="dark"] .form-select option {
+  background-color: var(--surface);
+  color: var(--text-primary);
+}
+
+/* Modals and dropdowns */
+html[data-theme="dark"] .modal-content,
+html[data-theme="dark"] .dropdown-menu {
+  background-color: var(--surface) !important;
+  color: var(--text-primary) !important;
+  border-color: var(--border-color) !important;
+}
+
+html[data-theme="dark"] .modal-title,
+html[data-theme="dark"] .modal-body,
+html[data-theme="dark"] .dropdown-item {
+  color: var(--text-primary) !important;
+}
+
+html[data-theme="dark"] .dropdown-item:hover {
+  background-color: var(--hover-bg) !important;
+}
+
+/* Borders */
+html[data-theme="dark"] .border {
+  border-color: var(--border-color) !important;
+}
+
+/* Close buttons */
+html[data-theme="dark"] .btn-close {
+  filter: invert(1);
+}
+
+

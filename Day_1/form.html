@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Form</title>
+</head>
+<body>
+    <form>
+        <fieldset>
+            <legend>Form Validation</legend>
+            <label for="fullName">Full Name: <span style="color:red">*</span></label>
+            <input type="text" name="fullName" autofocus required><br><br>
+            <label for="email">E-Mail: <span style="color:red">*</span></label>
+            <input type="email" name="email" required><br><br>
+            <label for="password">Password: <span style="color:red">*</span></label>
+            <input type="password" name="password" required><br><br>
+            <label for="age">Age:</label>
+            <input type="number" name="age" min="20" max="40"><br><br>
+            <label for="Gender">Gender:</label>
+            <input type="radio" name="Gender" value="Male">Male
+            <input type="radio" name="Gender" value="Female">Female<br><br>
+            <label for="skills">Skills:</label>
+            <input type="checkbox" name="skills" value="HTML">HTML
+            <input type="checkbox" name="skills" value="CSS">CSS
+            <input type="checkbox" name="skills" value="JS">JS<br><br>
+            <label for="me" name="me">About me:</label>
+            <textarea rows="10" cols="15"></textarea><br><br>
+            <input type="checkbox" name="news">
+            <label for="news">Subscribe to newsletter </label><br><br>
+            <input type="submit" value="Submit"><br><br>
+        </fieldset>
+    </form>
+</body>
+</html>  

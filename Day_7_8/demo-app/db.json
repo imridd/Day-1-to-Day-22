@@ -1,0 +1,26 @@
+{
+  "employees": [
+    {
+      "name": "Asha Rao",
+      "email": "asha@gmail.com",
+      "department": "Engineering",
+      "role": "Tester",
+      "id": "1"
+    },
+    {
+      "id": "2",
+      "name": "Ravi Kumar",
+      "department": "Finance",
+      "role": "Analyst",
+      "email": "ravi@gmail.com"
+    },
+    {
+      "id": "3",
+      "name": "Durga Paul",
+      "email": "durga@gmail.com",
+      "department": "Finance",
+      "role": "HR Executive"
+    }
+  ],
+  "$schema": "./node_modules/json-server/schema.json"
+}

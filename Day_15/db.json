@@ -1,0 +1,14 @@
+{
+  "admins": [
+    {
+      "id": "1",
+      "email": "admin@example.com",
+      "password": "admin123"
+    }
+  ],
+  "pages": [],
+  "navigation": {
+    "id": "1",
+    "position": "top"
+  }
+}

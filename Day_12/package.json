@@ -1,0 +1,10 @@
+{
+  "dependencies": {
+    "bootstrap": "^5.3.8",
+    "formik": "^2.4.9",
+    "json-server": "^1.0.0-beta.15",
+    "react-bootstrap": "^2.10.10",
+    "react-router": "^8.5.1",
+    "yup": "^1.7.1"
+  }
+}

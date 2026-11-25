@@ -1,0 +1,306 @@
+{
+  "admins": [
+    {
+      "id": "1",
+      "username": "admin",
+      "password": "admin@123",
+      "role": "admin",
+      "status": "active"
+    }
+  ],
+  "users": [
+    {
+      "id": "1",
+      "username": "Ridha",
+      "password": "Ridha@2004",
+      "dob": "2000-02-11",
+      "age": 26,
+      "city": "Chennai",
+      "designation": "Software Engineer",
+      "role": "user",
+      "status": "active"
+    },
+    {
+      "id": "2",
+      "username": "Sunil",
+      "password": "Sunil@123",
+      "dob": "1996-09-20",
+      "age": 30,
+      "city": "Bangalore",
+      "designation": "QA Engineer",
+      "role": "user",
+      "status": "inactive"
+    },
+    {
+      "id": "3",
+      "username": "priya",
+      "password": "priya123",
+      "dob": "2001-01-10",
+      "age": 25,
+      "city": "Hyderabad",
+      "designation": "Frontend Developer",
+      "role": "user",
+      "status": "inactive"
+    },
+    {
+      "username": "Barath Raj",
+      "password": "Ridraj@2004",
+      "dob": "2004-02-16",
+      "age": 22,
+      "city": "Pune",
+      "designation": "UI Developer",
+      "id": "4",
+      "role": "user",
+      "status": "active"
+    },
+    {
+      "username": "Sujetha Janet",
+      "password": "Janet@2004",
+      "dob": "2004-05-16",
+      "age": 22,
+      "city": "Coimbatore",
+      "designation": "Frontend Developer",
+      "id": "5",
+      "role": "user",
+      "status": "inactive"
+    },
+    {
+      "username": "Dharani",
+      "password": "Dharu@2222",
+      "dob": "2003-08-05",
+      "age": 23,
+      "city": "Hyderabad",
+      "designation": "UI Developer",
+      "id": "6",
+      "role": "user",
+      "status": "active"
+    },
+    {
+      "username": "Kavitha",
+      "password": "Santykavi@143",
+      "dob": "2003-04-08",
+      "age": 23,
+      "city": "Mumbai",
+      "designation": "Backend Developer",
+      "id": "C11XoG2MsKw",
+      "role": "user",
+      "status": "active"
+    },
+    {
+      "username": "Guna",
+      "password": "Gunajanet@123",
+      "dob": "2002-12-09",
+      "age": 23,
+      "city": "Mumbai",
+      "designation": "QA Engineer",
+      "id": "DNGuHkmCVKI",
+      "role": "user",
+      "status": "inactive"
+    },
+    {
+      "username": "Gandhi",
+      "password": "Dharu@123",
+      "dob": "2000-05-12",
+      "age": 26,
+      "city": "Hyderabad",
+      "designation": "HR Manager",
+      "id": "B1uhzrNR8fA",
+      "role": "user",
+      "status": "inactive"
+    },
+    {
+      "username": "Gokul",
+      "password": "Gokul@2004",
+      "dob": "2000-11-20",
+      "age": 25,
+      "city": "Mumbai",
+      "designation": "UI Developer",
+      "id": "phLWGTvFLm0",
+      "role": "user",
+      "status": "active"
+    }
+  ],
+  "products": [
+    {
+      "id": "101",
+      "productName": "Laptop",
+      "category": "Electronics",
+      "price": 65000,
+      "quantity": 15,
+      "description": "Dell Business Laptop",
+      "createdDate": "2026-01-15"
+    },
+    {
+      "productName": "Smartphone",
+      "category": "Electronics",
+      "price": 32000,
+      "quantity": 27,
+      "id": "102"
+    },
+    {
+      "id": "103",
+      "productName": "Office Chair",
+      "category": "Furniture",
+      "price": 8500,
+      "quantity": 10,
+      "description": "Ergonomic Office Chair"
+    },
+    {
+      "id": "104",
+      "productName": "Monitor",
+      "category": "Electronics",
+      "price": 15000,
+      "quantity": 12,
+      "description": "24 Inch LED Monitor",
+      "createdDate": "2026-04-05"
+    },
+    {
+      "id": "105",
+      "productName": "Keyboard",
+      "category": "Accessories",
+      "price": 1200,
+      "quantity": 40,
+      "description": "Mechanical Keyboard",
+      "createdDate": "2026-05-18"
+    },
+    {
+      "productName": "Duster",
+      "category": "Stationery",
+      "price": 23,
+      "quantity": 33,
+      "id": "mO1foLCyJk0"
+    },
+    {
+      "productName": "Sharpener",
+      "category": "Stationery",
+      "price": 7,
+      "quantity": 9,
+      "id": "z9SdHS_SyA0"
+    },
+    {
+      "productName": "Hotwheels Car",
+      "category": "Toys",
+      "price": 234,
+      "quantity": 36,
+      "id": "FNW_3OWcEM4"
+    }
+  ],
+  "employees": [
+    {
+      "id": "201",
+      "name": "Raj Kumar",
+      "email": "raj@gmail.com",
+      "department": "IT",
+      "salary": 45000
+    },
+    {
+      "id": "202",
+      "name": "Arun Kumar",
+      "email": "arun@gmail.com",
+      "department": "IT",
+      "salary": 55000
+    },
+    {
+      "id": "203",
+      "name": "Priya Sharma",
+      "email": "priya@gmail.com",
+      "department": "HR",
+      "salary": 42000
+    },
+    {
+      "id": "204",
+      "name": "Vijay Kumar",
+      "email": "vijay@gmail.com",
+      "department": "Finance",
+      "salary": 60000
+    },
+    {
+      "id": "205",
+      "name": "Karthik",
+      "email": "karthik@gmail.com",
+      "department": "Sales",
+      "salary": 50000
+    },
+    {
+      "name": "Harish",
+      "email": "harish@gmail.com",
+      "department": "Operations",
+      "salary": 52000,
+      "id": "206"
+    },
+    {
+      "name": "Kavita",
+      "email": "kavi@compnay.com",
+      "department": "Operations",
+      "salary": 123455,
+      "id": "207"
+    },
+    {
+      "name": "Guna Sekaran",
+      "email": "guna@company.com",
+      "department": "Marketing",
+      "salary": 80000,
+      "id": "1sXatLOR-y0"
+    }
+  ],
+  "categories": [
+    {
+      "id": "1",
+      "name": "Electronics"
+    },
+    {
+      "id": "2",
+      "name": "Furniture"
+    },
+    {
+      "id": "3",
+      "name": "Accessories"
+    },
+    {
+      "id": "4",
+      "name": "Stationery"
+    },
+    {
+      "id": "vZrbau9OynA",
+      "name": "Furniture"
+    },
+    {
+      "id": "vGJjHa4cAX0",
+      "name": "Gaming"
+    },
+    {
+      "id": "oF3mS20dCR0",
+      "name": "Toys"
+    },
+    {
+      "id": "Fz19ILrUAm0",
+      "name": "Medicine"
+    }
+  ],
+  "departments": [
+    {
+      "id": "1",
+      "name": "IT"
+    },
+    {
+      "id": "2",
+      "name": "HR"
+    },
+    {
+      "id": "3",
+      "name": "Finance"
+    },
+    {
+      "id": "4",
+      "name": "Marketing"
+    },
+    {
+      "id": "h_eLGOuk5nk",
+      "name": "DevOps"
+    },
+    {
+      "id": "EUlxZqAJcFI",
+      "name": "Engineering"
+    }
+  ]
+}
