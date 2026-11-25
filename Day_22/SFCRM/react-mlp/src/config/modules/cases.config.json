@@ -1,0 +1,244 @@
+
+{
+  "id": "cases",
+  "title": "Cases",
+  "description": "Manage customer issues, support requests and resolutions.",
+  "endpoint": "/cases",
+  "defaultValues": {
+    "Subject": "",
+    "Description": "",
+    "AccountId": "",
+    "ContactId": "",
+    "Status": "New",
+    "Priority": "Medium",
+    "Origin": "Web",
+    "OwnerId": ""
+  },
+  "formSections": [
+    {
+      "title": "Case Information",
+      "fields": [
+        {
+          "name": "Subject",
+          "label": "Case subject",
+          "type": "text",
+          "required": true
+        },
+        {
+          "name": "Description",
+          "label": "Issue description",
+          "type": "textarea"
+        },
+        {
+          "name": "Status",
+          "label": "Case status",
+          "type": "select",
+          "options": [
+            {
+              "label": "New",
+              "value": "New"
+            },
+            {
+              "label": "Working",
+              "value": "Working"
+            },
+            {
+              "label": "Escalated",
+              "value": "Escalated"
+            },
+            {
+              "label": "Closed",
+              "value": "Closed"
+            }
+          ]
+        },
+        {
+          "name": "Priority",
+          "label": "Priority",
+          "type": "select",
+          "options": [
+            {
+              "label": "Low",
+              "value": "Low"
+            },
+            {
+              "label": "Medium",
+              "value": "Medium"
+            },
+            {
+              "label": "High",
+              "value": "High"
+            },
+            {
+              "label": "Critical",
+              "value": "Critical"
+            }
+          ]
+        },
+        {
+          "name": "Origin",
+          "label": "Case origin",
+          "type": "select",
+          "options": [
+            {
+              "label": "Phone",
+              "value": "Phone"
+            },
+            {
+              "label": "Email",
+              "value": "Email"
+            },
+            {
+              "label": "Web",
+              "value": "Web"
+            },
+            {
+              "label": "Chat",
+              "value": "Chat"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "title": "Customer & Assignment",
+      "fields": [
+        {
+          "name": "AccountId",
+          "label": "Related account",
+          "type": "select",
+          "options": {
+            "$context": "accountOptions"
+          }
+        },
+        {
+          "name": "ContactId",
+          "label": "Related contact",
+          "type": "select",
+          "options": {
+            "$context": "contactOptions"
+          }
+        },
+        {
+          "name": "OwnerId",
+          "label": "Case owner",
+          "type": "select",
+          "options": {
+            "$context": "userOptions"
+          }
+        }
+      ]
+    }
+  ],
+  "columns": [
+    {
+      "key": "Subject",
+      "label": "Subject",
+      "sortable": true
+    },
+    {
+      "key": "Status",
+      "label": "Status",
+      "sortable": true
+    },
+    {
+      "key": "Priority",
+      "label": "Priority",
+      "sortable": true
+    },
+    {
+      "key": "Origin",
+      "label": "Origin"
+    },
+    {
+      "key": "AccountId",
+      "label": "Account"
+    },
+    {
+      "key": "ContactId",
+      "label": "Contact"
+    },
+    {
+      "key": "OwnerId",
+      "label": "Assigned to"
+    }
+  ],
+  "filters": [
+    {
+      "name": "Status",
+      "label": "Status",
+      "type": "select",
+      "options": [
+        {
+          "label": "New",
+          "value": "New"
+        },
+        {
+          "label": "Working",
+          "value": "Working"
+        },
+        {
+          "label": "Escalated",
+          "value": "Escalated"
+        },
+        {
+          "label": "Closed",
+          "value": "Closed"
+        }
+      ]
+    },
+    {
+      "name": "Priority",
+      "label": "Priority",
+      "type": "select",
+      "options": [
+        {
+          "label": "Low",
+          "value": "Low"
+        },
+        {
+          "label": "Medium",
+          "value": "Medium"
+        },
+        {
+          "label": "High",
+          "value": "High"
+        },
+        {
+          "label": "Critical",
+          "value": "Critical"
+        }
+      ]
+    }
+  ],
+  "page": {
+    "title": "Cases",
+    "description": "Resolve customer issues and monitor support operations.",
+    "breadcrumbs": [
+      "Workspace",
+      "CRM",
+      "Cases"
+    ],
+    "components": [
+      {
+        "id": "case-filters",
+        "component": "FilterBar",
+        "props": {
+          "searchPlaceholder": "Search support cases..."
+        }
+      },
+      {
+        "id": "case-table",
+        "component": "DataTable",
+        "props": {
+          "columns": {
+            "$context": "caseColumns"
+          },
+          "data": {
+            "$context": "cases"
+          }
+        }
+      }
+    ]
+  }
+}

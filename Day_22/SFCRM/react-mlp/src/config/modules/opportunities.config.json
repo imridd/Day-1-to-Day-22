@@ -1,0 +1,196 @@
+
+{
+  "id": "opportunities",
+  "title": "Opportunities",
+  "description": "Track deals, sales progress and revenue potential.",
+  "endpoint": "/opportunities",
+  "defaultValues": {
+    "Name": "",
+    "AccountId": "",
+    "StageName": "Prospecting",
+    "Amount": "",
+    "CloseDate": "",
+    "Probability": 10,
+    "OwnerId": ""
+  },
+  "formSections": [
+    {
+      "title": "Opportunity Information",
+      "fields": [
+        {
+          "name": "Name",
+          "label": "Opportunity name",
+          "type": "text",
+          "required": true
+        },
+        {
+          "name": "AccountId",
+          "label": "Account",
+          "type": "select",
+          "required": true,
+          "options": {
+            "$context": "accountOptions"
+          }
+        },
+        {
+          "name": "Amount",
+          "label": "Deal amount",
+          "type": "number"
+        },
+        {
+          "name": "CloseDate",
+          "label": "Expected close date",
+          "type": "date",
+          "required": true
+        }
+      ]
+    },
+    {
+      "title": "Sales Progress",
+      "fields": [
+        {
+          "name": "StageName",
+          "label": "Sales stage",
+          "type": "select",
+          "required": true,
+          "options": [
+            {
+              "label": "Prospecting",
+              "value": "Prospecting"
+            },
+            {
+              "label": "Qualification",
+              "value": "Qualification"
+            },
+            {
+              "label": "Proposal",
+              "value": "Proposal"
+            },
+            {
+              "label": "Negotiation",
+              "value": "Negotiation"
+            },
+            {
+              "label": "Closed Won",
+              "value": "Closed Won"
+            },
+            {
+              "label": "Closed Lost",
+              "value": "Closed Lost"
+            }
+          ]
+        },
+        {
+          "name": "Probability",
+          "label": "Probability (%)",
+          "type": "number"
+        },
+        {
+          "name": "OwnerId",
+          "label": "Opportunity owner",
+          "type": "select",
+          "options": {
+            "$context": "userOptions"
+          }
+        }
+      ]
+    }
+  ],
+  "columns": [
+    {
+      "key": "Name",
+      "label": "Opportunity",
+      "sortable": true
+    },
+    {
+      "key": "AccountId",
+      "label": "Account"
+    },
+    {
+      "key": "Amount",
+      "label": "Amount",
+      "type": "currency"
+    },
+    {
+      "key": "StageName",
+      "label": "Stage",
+      "sortable": true
+    },
+    {
+      "key": "Probability",
+      "label": "Probability"
+    },
+    {
+      "key": "CloseDate",
+      "label": "Close date",
+      "type": "date"
+    },
+    {
+      "key": "OwnerId",
+      "label": "Owner"
+    }
+  ],
+  "filters": [
+    {
+      "name": "StageName",
+      "label": "Sales stage",
+      "type": "select",
+      "options": [
+        {
+          "label": "Prospecting",
+          "value": "Prospecting"
+        },
+        {
+          "label": "Qualification",
+          "value": "Qualification"
+        },
+        {
+          "label": "Proposal",
+          "value": "Proposal"
+        },
+        {
+          "label": "Negotiation",
+          "value": "Negotiation"
+        },
+        {
+          "label": "Closed Won",
+          "value": "Closed Won"
+        },
+        {
+          "label": "Closed Lost",
+          "value": "Closed Lost"
+        }
+      ]
+    }
+  ],
+  "page": {
+    "title": "Opportunities",
+    "description": "Monitor your pipeline and close more deals.",
+    "breadcrumbs": [
+      "Workspace",
+      "CRM",
+      "Opportunities"
+    ],
+    "components": [
+      {
+        "id": "opportunity-filters",
+        "component": "FilterBar",
+        "props": {
+          "searchPlaceholder": "Search opportunities..."
+        }
+      },
+      {
+        "id": "opportunity-table",
+        "component": "DataTable",
+        "props": {
+          "columns": {
+            "$context": "opportunityColumns"
+          },
+          "data": {
+            "$context": "opportunities"
+          }
+        }
+      }
+    ]
+  }
+}

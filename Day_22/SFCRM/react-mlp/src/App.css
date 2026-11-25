@@ -1,0 +1,1280 @@
+
+/* =========================================
+   GENERAL APP & FORM LAYOUT
+========================================= */
+
+.app-shell {
+  min-height: 100vh;
+  background: #f3f3f3;
+}
+
+.topbar {
+  height: 64px;
+  background: #ffffff;
+  border-bottom: 1px solid #dddbda;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 0 5%;
+}
+
+.brand,
+.top-user,
+.page-heading,
+.section-heading,
+.owner-info,
+.form-footer,
+.input-icon,
+.select-wrapper {
+  display: flex;
+  align-items: center;
+}
+
+.brand {
+  gap: 12px;
+}
+
+.brand-icon {
+  background: #0176d3;
+  color: #ffffff;
+  padding: 10px;
+  border-radius: 4px;
+}
+
+.brand h2 {
+  font-size: 17px;
+  color: #181818;
+  margin: 0;
+  font-weight: 600;
+}
+
+.brand span,
+.user-info span {
+  font-size: 12px;
+  color: #706e6b;
+}
+
+.top-user {
+  gap: 11px;
+}
+
+.avatar,
+.owner-avatar {
+  width: 36px;
+  height: 36px;
+  border-radius: 50%;
+  background: #eaf5fe;
+  color: #0176d3;
+  display: grid;
+  place-items: center;
+  font-weight: 700;
+}
+
+.user-info {
+  display: flex;
+  flex-direction: column;
+  gap: 3px;
+}
+
+.user-info strong {
+  font-size: 13px;
+  color: #181818;
+}
+
+.breadcrumb {
+  padding: 15px 5%;
+  font-size: 13px;
+  color: #0176d3;
+  background: #ffffff;
+  border-bottom: 1px solid #dddbda;
+}
+
+.breadcrumb span {
+  color: #706e6b;
+  margin: 0 10px;
+}
+
+.breadcrumb strong {
+  color: #444444;
+}
+
+.main-content {
+  max-width: 1050px;
+  margin: 32px auto;
+  padding: 0 22px;
+}
+
+.page-heading {
+  gap: 15px;
+  margin-bottom: 24px;
+}
+
+.heading-icon {
+  background: #0176d3;
+  color: #ffffff;
+  padding: 13px;
+  border-radius: 4px;
+}
+
+.page-heading h1 {
+  margin: 0 0 5px;
+  font-size: 24px;
+  font-weight: 600;
+  color: #181818;
+}
+
+.page-heading p {
+  color: #706e6b;
+  font-size: 13px;
+  margin: 0;
+}
+
+.form-card {
+  background: #ffffff;
+  border: 1px solid #dddbda;
+  border-radius: 5px;
+  padding: 26px 30px;
+  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.06);
+}
+
+.section-heading {
+  gap: 12px;
+  margin-bottom: 25px;
+}
+
+.section-icon {
+  color: #0176d3;
+  background: #eef6ff;
+  padding: 9px;
+  border-radius: 4px;
+}
+
+.section-heading h3 {
+  margin: 0 0 4px;
+  font-size: 15px;
+  font-weight: 600;
+  color: #181818;
+}
+
+.section-heading p {
+  margin: 0;
+  font-size: 12px;
+  color: #706e6b;
+}
+
+.form-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 22px 28px;
+}
+
+.field {
+  display: flex;
+  flex-direction: column;
+  gap: 7px;
+  min-width: 0;
+}
+
+.field label {
+  font-size: 13px;
+  font-weight: 600;
+  color: #444444;
+}
+
+.required {
+  color: #ba0517;
+}
+
+.field input,
+.field select {
+  height: 40px;
+  width: 100%;
+  box-sizing: border-box;
+  border: 1px solid #c9c7c5;
+  border-radius: 4px;
+  padding: 0 11px;
+  outline: none;
+  color: #181818;
+  background: #ffffff;
+  font-size: 13px;
+  font-family: inherit;
+  transition: border-color 0.15s, box-shadow 0.15s;
+}
+
+.field input:focus,
+.field select:focus {
+  border-color: #0176d3;
+  box-shadow: 0 0 0 1px #0176d3;
+}
+
+.field input::placeholder {
+  color: #a0a0a0;
+}
+
+.input-icon,
+.select-wrapper {
+  position: relative;
+}
+
+.input-icon svg,
+.select-wrapper > svg:first-child {
+  position: absolute;
+  left: 12px;
+  color: #706e6b;
+  pointer-events: none;
+}
+
+.input-icon input {
+  padding-left: 39px;
+}
+
+.select-wrapper select {
+  appearance: none;
+  padding-left: 39px;
+  padding-right: 38px;
+  cursor: pointer;
+}
+
+.select-wrapper > svg:last-child {
+  position: absolute;
+  right: 12px;
+  color: #706e6b;
+  pointer-events: none;
+}
+
+.section-divider {
+  height: 1px;
+  background: #e5e5e5;
+  margin: 30px 0;
+}
+
+.account-field {
+  max-width: 480px;
+}
+
+.account-field small {
+  font-size: 11px;
+  color: #706e6b;
+}
+
+.owner-info {
+  gap: 13px;
+  margin-top: 26px;
+  padding: 16px;
+  background: #f8f8f8;
+  border: 1px solid #dddbda;
+  border-radius: 4px;
+  max-width: 440px;
+}
+
+.owner-info > div:last-child {
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+}
+
+.owner-info span,
+.owner-info small {
+  color: #706e6b;
+  font-size: 11px;
+}
+
+.owner-info strong {
+  color: #181818;
+  font-size: 13px;
+}
+
+.form-footer {
+  justify-content: flex-end;
+  gap: 12px;
+  padding: 18px 0;
+}
+
+.form-footer button {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+  padding: 10px 18px;
+  border-radius: 4px;
+  font-size: 13px;
+  font-weight: 600;
+  cursor: pointer;
+  transition: background 0.15s, border-color 0.15s;
+}
+
+.cancel-btn {
+  border: 1px solid #c9c7c5;
+  background: #ffffff;
+  color: #444444;
+}
+
+.cancel-btn:hover {
+  background: #f3f3f3;
+}
+
+.save-btn {
+  background: #0176d3;
+  border: 1px solid #0176d3;
+  color: #ffffff;
+}
+
+.save-btn:hover {
+  background: #014486;
+  border-color: #014486;
+}
+
+.save-btn:disabled {
+  opacity: 0.65;
+  cursor: not-allowed;
+}
+
+.message {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  padding: 13px 16px;
+  margin-bottom: 16px;
+  border-radius: 4px;
+  font-size: 13px;
+  overflow-wrap: anywhere;
+}
+
+.error-message {
+  background: #fff1f0;
+  border: 1px solid #ea8b87;
+  color: #ba0517;
+}
+
+.success-message {
+  background: #eaf7ee;
+  border: 1px solid #91d4a5;
+  color: #216e39;
+}
+
+.footer-note {
+  display: flex;
+  justify-content: space-between;
+  color: #8a8886;
+  font-size: 11px;
+  padding: 18px 0;
+}
+
+.loading-screen {
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  gap: 12px;
+  background: #f3f3f3;
+  color: #0176d3;
+}
+
+.loading-screen p {
+  font-size: 14px;
+}
+
+.spin {
+  animation: spin 1s linear infinite;
+}
+
+@keyframes spin {
+  to {
+    transform: rotate(360deg);
+  }
+}
+
+/* GENERAL RESPONSIVE */
+
+@media (max-width: 650px) {
+  .topbar {
+    padding: 0 17px;
+  }
+
+  .user-info {
+    display: none;
+  }
+
+  .main-content {
+    margin-top: 22px;
+    padding: 0 13px;
+  }
+
+  .form-card {
+    padding: 21px 17px;
+  }
+
+  .form-grid {
+    grid-template-columns: 1fr;
+    gap: 18px;
+  }
+
+  .footer-note {
+    flex-direction: column;
+    gap: 8px;
+  }
+
+  .page-heading h1 {
+    font-size: 21px;
+  }
+}
+
+/* DUPLICATE WARNING */
+
+.duplicate-warning {
+  align-items: flex-start;
+  margin-top: 20px;
+}
+
+.duplicate-warning ul {
+  margin: 8px 0;
+  padding-left: 20px;
+}
+
+.duplicate-warning li {
+  margin-bottom: 5px;
+}
+
+.duplicate-warning small {
+  display: block;
+  margin-top: 6px;
+}
+
+/* TOP USER SELECT */
+
+.top-user-select {
+  background: transparent;
+  border: none;
+  outline: none;
+  color: inherit;
+  font-size: 14px;
+  font-weight: 700;
+  cursor: pointer;
+  max-width: 170px;
+  padding: 2px 0;
+}
+
+.top-user-select option {
+  background: #ffffff;
+  color: #222222;
+}
+
+.user-info {
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+}
+
+/* =========================================
+   ACCOUNT PAGE
+========================================= */
+
+.account-page {
+  width: 100%;
+  padding: 28px;
+  color: #181818;
+}
+
+.account-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-bottom: 26px;
+}
+
+.account-breadcrumb {
+  color: #706e6b;
+  font-size: 13px;
+  margin-bottom: 10px;
+}
+
+.account-header h1 {
+  font-size: 26px;
+  font-weight: 600;
+  margin: 0;
+  color: #181818;
+}
+
+.account-header p {
+  color: #706e6b;
+  font-size: 14px;
+  margin-top: 7px;
+}
+
+.account-header-icon {
+  width: 54px;
+  height: 54px;
+  display: grid;
+  place-items: center;
+  border-radius: 5px;
+  background: #eaf5fe;
+  color: #0176d3;
+}
+
+/* ACCOUNT FORM CARD */
+
+.account-form-card {
+  background: #ffffff;
+  border: 1px solid #dddbda;
+  border-radius: 5px;
+  padding: 26px;
+  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.06);
+}
+
+.account-section-heading {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  padding-bottom: 20px;
+  margin-bottom: 23px;
+  border-bottom: 1px solid #e5e5e5;
+  color: #0176d3;
+}
+
+.account-section-heading h3 {
+  margin: 0;
+  color: #181818;
+  font-size: 16px;
+  font-weight: 600;
+}
+
+.account-section-heading p {
+  margin: 5px 0 0;
+  color: #706e6b;
+  font-size: 13px;
+}
+
+/* ACCOUNT FORM GRID */
+
+.account-form-grid {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 22px;
+}
+
+.account-page .field {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+  min-width: 0;
+}
+
+.account-page .field label {
+  font-size: 13px;
+  font-weight: 600;
+  color: #444444;
+}
+
+.account-page .field label span {
+  color: #ba0517;
+}
+
+/* ACCOUNT INPUTS */
+
+.account-input-wrapper {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  min-height: 42px;
+  padding: 0 12px;
+  border: 1px solid #c9c7c5;
+  border-radius: 4px;
+  background: #ffffff;
+  color: #706e6b;
+  transition: border-color 0.15s, box-shadow 0.15s;
+}
+
+.account-input-wrapper:focus-within {
+  border-color: #0176d3;
+  box-shadow: 0 0 0 1px #0176d3;
+}
+
+.account-input-wrapper input,
+.account-input-wrapper select {
+  width: 100%;
+  min-width: 0;
+  height: 40px;
+  border: none;
+  outline: none;
+  background: transparent;
+  color: #181818;
+  font-size: 13px;
+  font-family: inherit;
+}
+
+.account-input-wrapper select {
+  appearance: none;
+  -webkit-appearance: none;
+  cursor: pointer;
+}
+
+.account-input-wrapper input::placeholder {
+  color: #a0a0a0;
+}
+
+.account-page .field > input {
+  width: 100%;
+  height: 42px;
+  box-sizing: border-box;
+  padding: 0 12px;
+  border: 1px solid #c9c7c5;
+  border-radius: 4px;
+  outline: none;
+  background: #ffffff;
+  color: #181818;
+  font-size: 13px;
+  font-family: inherit;
+}
+
+.account-page .field > input:focus {
+  border-color: #0176d3;
+  box-shadow: 0 0 0 1px #0176d3;
+}
+
+/* ACCOUNT VALIDATION */
+
+.account-page .field-error {
+  color: #ba0517;
+  font-size: 12px;
+  font-weight: 500;
+}
+
+.account-warning,
+.account-error,
+.account-success {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  padding: 12px 15px;
+  margin-top: 20px;
+  border-radius: 4px;
+  font-size: 13px;
+}
+
+.account-warning {
+  color: #8c4b02;
+  background: #fff8e6;
+  border: 1px solid #f1c75b;
+}
+
+.account-error {
+  color: #ba0517;
+  background: #fff1f0;
+  border: 1px solid #ea8b87;
+}
+
+.account-success {
+  color: #216e39;
+  background: #eaf7ee;
+  border: 1px solid #91d4a5;
+}
+
+/* ACCOUNT ACTION BUTTONS */
+
+.account-form-actions {
+  display: flex;
+  justify-content: flex-end;
+  gap: 12px;
+  margin-top: 28px;
+  padding-top: 20px;
+  border-top: 1px solid #e5e5e5;
+}
+
+.account-form-actions button {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+  min-height: 40px;
+  padding: 0 18px;
+  border-radius: 4px;
+  font-size: 13px;
+  font-weight: 600;
+  cursor: pointer;
+  transition: background 0.15s, border-color 0.15s;
+}
+
+.account-cancel-btn {
+  color: #444444;
+  background: #ffffff;
+  border: 1px solid #c9c7c5;
+}
+
+.account-cancel-btn:hover {
+  background: #f3f3f3;
+}
+
+.account-save-btn {
+  color: #ffffff;
+  background: #0176d3;
+  border: 1px solid #0176d3;
+}
+
+.account-save-btn:hover {
+  background: #014486;
+  border-color: #014486;
+}
+
+.account-form-actions button:disabled {
+  opacity: 0.6;
+  cursor: not-allowed;
+  transform: none;
+}
+
+/* ACCOUNT LOADING */
+
+.account-loading {
+  min-height: 300px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-direction: column;
+  gap: 12px;
+  color: #706e6b;
+}
+
+.spin {
+  animation: account-spin 1s linear infinite;
+}
+
+@keyframes account-spin {
+  to {
+    transform: rotate(360deg);
+  }
+}
+
+/* ACCOUNT RESPONSIVE */
+
+@media (max-width: 700px) {
+  .account-page {
+    padding: 16px;
+  }
+
+  .account-form-card {
+    padding: 18px;
+  }
+
+  .account-form-grid {
+    grid-template-columns: 1fr;
+    gap: 19px;
+  }
+
+  .account-header h1 {
+    font-size: 23px;
+  }
+
+  .account-form-actions {
+    flex-direction: column-reverse;
+  }
+
+  .account-form-actions button {
+    width: 100%;
+  }
+}
+
+/* =========================================
+   CLOUDBRIDGE CRM - GLOBAL LAYOUT
+========================================= */
+
+.crm-app {
+  min-height: 100vh;
+  background: #f3f3f3;
+  color: #181818;
+}
+
+/* CRM TOP HEADER */
+
+.crm-topbar {
+  min-height: 64px;
+  padding: 0 36px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  background: #ffffff;
+  border-bottom: 1px solid #dddbda;
+}
+
+.crm-brand {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+}
+
+.crm-brand-icon {
+  width: 40px;
+  height: 40px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: 5px;
+  color: #ffffff;
+  background: #0176d3;
+  box-shadow: none;
+}
+
+.crm-brand-text h2 {
+  margin: 0;
+  font-size: 18px;
+  font-weight: 600;
+  letter-spacing: 0;
+  color: #181818;
+}
+
+.crm-brand-text span {
+  display: block;
+  margin-top: 3px;
+  font-size: 12px;
+  color: #706e6b;
+}
+
+.crm-header-right {
+  display: flex;
+  align-items: center;
+}
+
+.crm-environment {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  padding: 7px 11px;
+  border-radius: 4px;
+  background: #eaf7ee;
+  color: #216e39;
+  font-size: 12px;
+  font-weight: 600;
+}
+
+.crm-online-dot {
+  width: 7px;
+  height: 7px;
+  border-radius: 50%;
+  background: #2e844a;
+}
+
+/* CRM NAVIGATION */
+
+.crm-navigation {
+  height: 48px;
+  padding: 0 36px;
+  display: flex;
+  align-items: stretch;
+  gap: 4px;
+  background: #ffffff;
+  border-bottom: 1px solid #dddbda;
+}
+
+.crm-nav-item {
+  position: relative;
+  display: flex;
+  align-items: center;
+  gap: 9px;
+  padding: 0 18px;
+  border: none;
+  border-bottom: 3px solid transparent;
+  background: transparent;
+  color: #706e6b;
+  font-size: 13px;
+  font-weight: 600;
+  cursor: pointer;
+  transition: color 0.15s, background 0.15s;
+}
+
+.crm-nav-item:hover {
+  color: #0176d3;
+  background: #f3f9ff;
+}
+
+.crm-nav-item.active {
+  color: #0176d3;
+  border-bottom-color: #0176d3;
+  background: #f3f9ff;
+}
+
+/* CRM CONTENT */
+
+.crm-content {
+  min-height: calc(100vh - 112px);
+  padding: 28px 36px;
+}
+
+.crm-loading {
+  min-height: 300px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  gap: 12px;
+  color: #706e6b;
+}
+
+.crm-loading p {
+  font-size: 14px;
+}
+
+/* CRM RESPONSIVE */
+
+@media (max-width: 640px) {
+  .crm-topbar {
+    padding: 0 16px;
+    min-height: 60px;
+  }
+
+  .crm-brand-text h2 {
+    font-size: 16px;
+  }
+
+  .crm-environment {
+    font-size: 10px;
+    padding: 7px 9px;
+  }
+
+  .crm-navigation {
+    padding: 0 12px;
+    height: 48px;
+    overflow-x: auto;
+  }
+
+  .crm-nav-item {
+    flex: 1;
+    justify-content: center;
+    padding: 0 8px;
+    font-size: 12px;
+    white-space: nowrap;
+  }
+
+  .crm-content {
+    padding: 18px 14px;
+  }
+}
+
+/* =========================================
+   GLOBAL VIEWPORT & LAYOUT FIX
+========================================= */
+
+html,
+body,
+#root {
+  width: 100%;
+  min-width: 0;
+  min-height: 100%;
+  margin: 0;
+  background: #f3f3f3;
+}
+
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+}
+
+#root {
+  min-height: 100vh;
+}
+
+.crm-app {
+  width: 100%;
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+  background: #f3f3f3;
+}
+
+.crm-content {
+  width: 100%;
+  flex: 1 0 auto;
+  min-height: calc(100vh - 112px);
+  padding: 28px 36px;
+  background: #f3f3f3;
+}
+
+/* =========================================
+   MODULE HEADER & BUTTON FIX
+========================================= */
+
+.module-crud-page {
+  width: 100%;
+  min-width: 0;
+  min-height: 100%;
+  background: #f3f3f3;
+}
+
+.module-page-header {
+  display: flex;
+  width: 100%;
+  min-width: 0;
+  justify-content: space-between;
+  align-items: center;
+  gap: 16px;
+  flex-wrap: wrap;
+}
+
+.module-page-heading {
+  flex: 1 1 220px;
+  min-width: 0;
+}
+
+.module-page-actions {
+  display: flex;
+  flex: 0 1 auto;
+  min-width: 0;
+  max-width: 100%;
+  align-items: center;
+  justify-content: flex-end;
+  flex-wrap: wrap;
+  gap: 10px;
+}
+
+.module-page-actions button {
+  flex-shrink: 0;
+  white-space: nowrap;
+}
+
+.module-new-btn {
+  min-width: 145px;
+}
+
+/* TABLE SHOULD NOT PUSH THE PAGE OUTSIDE VIEWPORT */
+
+.module-table-container {
+  width: 100%;
+  min-width: 0;
+  overflow-x: auto;
+}
+
+/* RESPONSIVE */
+
+@media (max-width: 700px) {
+  .crm-content {
+    padding: 18px 14px;
+  }
+
+  .module-page-header {
+    align-items: flex-start;
+  }
+
+  .module-page-actions {
+    width: 100%;
+    justify-content: flex-start;
+  }
+}
+
+/* =========================================
+   CRM ROOT LAYOUT - LIGHT THEME
+========================================= */
+
+html,
+body,
+#root {
+  width: 100%;
+  min-height: 100%;
+  margin: 0;
+  background: #f3f3f3;
+}
+
+/* =========================================
+   CRM WORKSPACE - CORRECTED LAYOUT
+========================================= */
+
+html,
+body,
+#root {
+  width: 100%;
+  min-height: 100%;
+  margin: 0;
+  background: #f3f3f3;
+}
+
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+}
+
+.crm-layout {
+  display: flex;
+  align-items: stretch;
+  width: 100%;
+  min-height: 100vh;
+  background: #f3f3f3;
+}
+
+.crm-sidebar {
+  position: sticky;
+  top: 0;
+  align-self: flex-start;
+  flex: 0 0 260px;
+  width: 260px;
+  height: 100vh;
+  min-height: 0;
+  overflow-y: auto;
+}
+
+.crm-sidebar.collapsed {
+  flex-basis: 76px;
+  width: 76px;
+}
+
+.crm-main {
+  display: flex;
+  flex: 1 1 0;
+  flex-direction: column;
+  width: 0;
+  min-width: 0;
+  min-height: 100vh;
+  background: #f3f3f3;
+}
+
+.crm-topbar {
+  position: sticky;
+  top: 0;
+  z-index: 10;
+  flex: 0 0 64px;
+  min-height: 64px;
+  width: 100%;
+}
+
+.crm-workspace {
+  flex: 1 0 auto;
+  width: 100%;
+  min-width: 0;
+  min-height: calc(100vh - 64px);
+  padding: 0;
+  background: #f3f3f3;
+  color: #181818;
+}
+
+.crm-workspace .module-crud-page {
+  width: 100%;
+  min-width: 0;
+  min-height: 100%;
+  background: #f3f3f3;
+}
+
+/* Prevent module headers and tables from overflowing */
+
+.module-crud-page,
+.module-page-header,
+.module-table-container {
+  min-width: 0;
+  max-width: 100%;
+}
+
+.module-page-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  flex-wrap: wrap;
+  gap: 14px;
+}
+
+.module-page-heading {
+  flex: 1 1 220px;
+  min-width: 0;
+}
+
+.module-page-actions {
+  display: flex;
+  flex: 0 1 auto;
+  flex-wrap: wrap;
+  justify-content: flex-end;
+  gap: 10px;
+}
+
+.module-page-actions button {
+  flex-shrink: 0;
+  white-space: nowrap;
+}
+
+/* Mobile sidebar */
+
+.sidebar-mobile-close {
+  display: none;
+}
+
+@media (max-width: 768px) {
+  .crm-sidebar {
+    position: fixed;
+    top: 0;
+    left: 0;
+    z-index: 100;
+    width: 260px;
+    min-width: 260px;
+    height: 100vh;
+    transform: translateX(-100%);
+    transition: transform 0.25s ease;
+  }
+
+  .crm-sidebar.mobile-open {
+    transform: translateX(0);
+  }
+
+  .crm-sidebar.collapsed {
+    width: 260px;
+    min-width: 260px;
+  }
+
+  .crm-main {
+    width: 100%;
+    min-width: 0;
+  }
+
+  .crm-workspace {
+    min-height: calc(100vh - 56px);
+  }
+
+  .sidebar-mobile-close {
+    position: absolute;
+    top: 20px;
+    right: 12px;
+    display: grid;
+    place-items: center;
+    width: 30px;
+    height: 30px;
+    border: 1px solid #dddbda;
+    border-radius: 4px;
+    background: #ffffff;
+    color: #444444;
+    font-size: 20px;
+    cursor: pointer;
+  }
+}
+
+@media (max-width: 650px) {
+  .module-page-header {
+    align-items: flex-start;
+  }
+
+  .module-page-actions {
+    width: 100%;
+    justify-content: flex-start;
+  }
+}
+
+.crm-workspace-message {
+  min-height: 200px;
+  padding: 28px;
+  background: #f3f3f3;
+  color: #181818;
+}
+
+/* Keep modules on the light workspace */
+
+.crm-workspace .module-crud-page {
+  width: 100%;
+  min-height: 100%;
+  background: #f3f3f3;
+  color: #181818;
+}
+
+/* Mobile layout */
+
+@media (max-width: 640px) {
+  .crm-main {
+    min-width: 0;
+  }
+
+  .crm-workspace {
+    min-height: calc(100vh - 60px);
+  }
+}

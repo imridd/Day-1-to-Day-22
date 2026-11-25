@@ -1,0 +1,136 @@
+
+{
+  "id": "accounts",
+  "title": "Accounts",
+  "description": "Manage companies and business relationships.",
+  "endpoint": "/accounts",
+  "defaultValues": {
+    "Name": "",
+    "Industry": "",
+    "Website": "",
+    "Phone": "",
+    "AnnualRevenue": "",
+    "BillingCity": "",
+    "OwnerId": ""
+  },
+  "formSections": [
+    {
+      "title": "Account Information",
+      "fields": [
+        {
+          "name": "Name",
+          "label": "Account name",
+          "type": "text",
+          "required": true
+        },
+        {
+          "name": "Industry",
+          "label": "Industry",
+          "type": "text"
+        },
+        {
+          "name": "Website",
+          "label": "Website",
+          "type": "text"
+        },
+        {
+          "name": "Phone",
+          "label": "Phone",
+          "type": "tel"
+        }
+      ]
+    },
+    {
+      "title": "Business Details",
+      "fields": [
+        {
+          "name": "AnnualRevenue",
+          "label": "Annual revenue",
+          "type": "number"
+        },
+        {
+          "name": "BillingCity",
+          "label": "Billing city",
+          "type": "text"
+        },
+        {
+          "name": "OwnerId",
+          "label": "Account owner",
+          "type": "select",
+          "options": {
+            "$context": "userOptions"
+          }
+        }
+      ]
+    }
+  ],
+  "columns": [
+    {
+      "key": "Name",
+      "label": "Account",
+      "sortable": true
+    },
+    {
+      "key": "Industry",
+      "label": "Industry"
+    },
+    {
+      "key": "Website",
+      "label": "Website"
+    },
+    {
+      "key": "Phone",
+      "label": "Phone"
+    },
+    {
+      "key": "AnnualRevenue",
+      "label": "Annual revenue",
+      "type": "currency"
+    },
+    {
+      "key": "BillingCity",
+      "label": "City"
+    },
+    {
+      "key": "OwnerId",
+      "label": "Owner"
+    }
+  ],
+  "filters": [
+    {
+      "name": "Industry",
+      "label": "Industry",
+      "type": "text"
+    }
+  ],
+  "page": {
+    "title": "Accounts",
+    "description": "Manage your organizations and business customers.",
+    "breadcrumbs": [
+      "Workspace",
+      "CRM",
+      "Accounts"
+    ],
+    "components": [
+      {
+        "id": "account-filters",
+        "component": "FilterBar",
+        "props": {
+          "searchPlaceholder": "Search accounts..."
+        }
+      },
+      {
+        "id": "account-table",
+        "component": "DataTable",
+        "props": {
+          "columns": {
+            "$context": "accountColumns"
+          },
+          "data": {
+            "$context": "accounts"
+          }
+        }
+      }
+    ]
+  }
+}

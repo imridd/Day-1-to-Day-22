@@ -1,0 +1,149 @@
+
+{
+  "id": "contacts",
+  "title": "Contacts",
+  "description": "Manage people and their business relationships.",
+  "endpoint": "/contacts",
+  "defaultValues": {
+    "FirstName": "",
+    "LastName": "",
+    "Email": "",
+    "Phone": "",
+    "Title": "",
+    "AccountId": "",
+    "OwnerId": ""
+  },
+  "formSections": [
+    {
+      "title": "Contact Information",
+      "fields": [
+        {
+          "name": "FirstName",
+          "label": "First name",
+          "type": "text"
+        },
+        {
+          "name": "LastName",
+          "label": "Last name",
+          "type": "text",
+          "required": true
+        },
+        {
+          "name": "Email",
+          "label": "Email address",
+          "type": "email"
+        },
+        {
+          "name": "Phone",
+          "label": "Phone number",
+          "type": "tel"
+        },
+        {
+          "name": "Title",
+          "label": "Job title",
+          "type": "text"
+        }
+      ]
+    },
+    {
+      "title": "Relationships",
+      "fields": [
+        {
+          "name": "AccountId",
+          "label": "Associated account",
+          "type": "select",
+          "options": {
+            "$context": "accountOptions"
+          }
+        },
+        {
+          "name": "OwnerId",
+          "label": "Contact owner",
+          "type": "select",
+          "options": {
+            "$context": "userOptions"
+          }
+        }
+      ]
+    }
+  ],
+  "columns": [
+    {
+      "key": "FirstName",
+      "label": "First name"
+    },
+    {
+      "key": "LastName",
+      "label": "Last name",
+      "sortable": true
+    },
+    {
+      "key": "Email",
+      "label": "Email"
+    },
+    {
+      "key": "Phone",
+      "label": "Phone"
+    },
+    {
+      "key": "Title",
+      "label": "Job title"
+    },
+    {
+      "key": "AccountId",
+      "label": "Account"
+    },
+    {
+      "key": "OwnerId",
+      "label": "Owner"
+    }
+  ],
+  "filters": [
+    {
+      "name": "AccountId",
+      "label": "Account",
+      "type": "select",
+      "options": {
+        "$context": "accountOptions"
+      }
+    },
+    {
+      "name": "OwnerId",
+      "label": "Owner",
+      "type": "select",
+      "options": {
+        "$context": "userOptions"
+      }
+    }
+  ],
+  "page": {
+    "title": "Contacts",
+    "description": "Build and maintain meaningful customer relationships.",
+    "breadcrumbs": [
+      "Workspace",
+      "CRM",
+      "Contacts"
+    ],
+    "components": [
+      {
+        "id": "contact-filters",
+        "component": "FilterBar",
+        "props": {
+          "searchPlaceholder": "Search contacts..."
+        }
+      },
+      {
+        "id": "contact-table",
+        "component": "DataTable",
+        "props": {
+          "columns": {
+            "$context": "contactColumns"
+          },
+          "data": {
+            "$context": "contacts"
+          }
+        }
+      }
+    ]
+  }
+}

@@ -1,0 +1,269 @@
+
+.dynamic-form-page {
+  width: 100%;
+  max-width: 1200px;
+  margin: 0 auto;
+  color: #181818;
+}
+
+.dynamic-form-header {
+  margin-bottom: 24px;
+}
+
+.dynamic-eyebrow {
+  color: #706e6b;
+  font-size: 11px;
+  font-weight: 600;
+  letter-spacing: 1px;
+  text-transform: uppercase;
+}
+
+.dynamic-form-header h1 {
+  margin: 8px 0 6px;
+  color: #181818;
+  font-size: 25px;
+  font-weight: 600;
+  letter-spacing: -0.3px;
+}
+
+.dynamic-form-header p {
+  margin: 0;
+  color: #706e6b;
+  font-size: 13px;
+  line-height: 1.5;
+}
+
+.dynamic-form {
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+}
+
+.dynamic-form-section {
+  padding: 22px 24px;
+  border: 1px solid #dddbda;
+  border-radius: 5px;
+  background: #ffffff;
+}
+
+.dynamic-section-heading {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  padding-bottom: 16px;
+  margin-bottom: 20px;
+  border-bottom: 1px solid #dddbda;
+}
+
+.dynamic-section-icon {
+  width: 36px;
+  height: 36px;
+  display: grid;
+  place-items: center;
+  border-radius: 4px;
+  background: #eaf5fe;
+  color: #0176d3;
+}
+
+.dynamic-section-heading h2 {
+  margin: 0;
+  color: #181818;
+  font-size: 15px;
+  font-weight: 600;
+}
+
+.dynamic-section-heading p {
+  margin: 5px 0 0;
+  color: #706e6b;
+  font-size: 12px;
+}
+
+.dynamic-form-grid {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 20px 24px;
+}
+
+.dynamic-field {
+  display: flex;
+  flex-direction: column;
+  gap: 7px;
+  min-width: 0;
+}
+
+.dynamic-field.full-width {
+  grid-column: 1 / -1;
+}
+
+.dynamic-field > label {
+  color: #444444;
+  font-size: 12px;
+  font-weight: 600;
+}
+
+.dynamic-required {
+  color: #ea001e;
+  margin-left: 2px;
+}
+
+.dynamic-field input,
+.dynamic-field select,
+.dynamic-field textarea {
+  width: 100%;
+  box-sizing: border-box;
+  min-height: 36px;
+  padding: 8px 12px;
+  border: 1px solid #c9c7c5;
+  border-radius: 4px;
+  outline: none;
+  background: #ffffff;
+  color: #181818;
+  font-family: inherit;
+  font-size: 13px;
+  transition: border-color 0.15s ease, box-shadow 0.15s ease;
+}
+
+.dynamic-field textarea {
+  min-height: 90px;
+  resize: vertical;
+  line-height: 1.5;
+}
+
+.dynamic-field select {
+  cursor: pointer;
+}
+
+.dynamic-field input:focus,
+.dynamic-field select:focus,
+.dynamic-field textarea:focus {
+  border-color: #0176d3;
+  box-shadow: 0 0 0 1px #0176d3;
+}
+
+.dynamic-field input:disabled,
+.dynamic-field select:disabled,
+.dynamic-field textarea:disabled {
+  opacity: 0.6;
+  background: #f3f3f3;
+  cursor: not-allowed;
+}
+
+.dynamic-field input::placeholder,
+.dynamic-field textarea::placeholder {
+  color: #706e6b;
+}
+
+.dynamic-checkbox {
+  display: flex;
+  align-items: center;
+  gap: 9px;
+  min-height: 36px;
+  color: #444444;
+  font-size: 13px;
+}
+
+.dynamic-checkbox input {
+  width: 16px;
+  min-height: 16px;
+  margin: 0;
+  accent-color: #0176d3;
+  cursor: pointer;
+}
+
+.dynamic-helper {
+  color: #706e6b;
+  font-size: 11px;
+  line-height: 1.4;
+}
+
+.dynamic-error {
+  color: #ba0517;
+  font-size: 11px;
+  line-height: 1.4;
+}
+
+.dynamic-alert {
+  padding: 12px 15px;
+  border-radius: 4px;
+  font-size: 12px;
+  line-height: 1.5;
+}
+
+.dynamic-alert-error {
+  border: 1px solid #ea001e;
+  background: #fef1ee;
+  color: #ba0517;
+}
+
+.dynamic-alert-success {
+  border: 1px solid #91dbb4;
+  background: #e6f9ed;
+  color: #2e844a;
+}
+
+.dynamic-form-actions {
+  display: flex;
+  justify-content: flex-end;
+  gap: 10px;
+  padding: 16px 0 4px;
+}
+
+.dynamic-form-actions button {
+  min-height: 36px;
+  padding: 0 17px;
+  border-radius: 4px;
+  font-family: inherit;
+  font-size: 13px;
+  font-weight: 600;
+  cursor: pointer;
+  transition: background 0.15s ease, border-color 0.15s ease;
+}
+
+.dynamic-cancel-btn {
+  border: 1px solid #c9c7c5;
+  background: #ffffff;
+  color: #0176d3;
+}
+
+.dynamic-cancel-btn:hover:not(:disabled) {
+  border-color: #0176d3;
+  background: #f3f9ff;
+}
+
+.dynamic-submit-btn {
+  border: 1px solid #0176d3;
+  background: #0176d3;
+  color: #ffffff;
+}
+
+.dynamic-submit-btn:hover:not(:disabled) {
+  border-color: #014486;
+  background: #014486;
+}
+
+.dynamic-form-actions button:disabled {
+  opacity: 0.5;
+  cursor: not-allowed;
+}
+
+@media (max-width: 650px) {
+  .dynamic-form-section {
+    padding: 18px;
+  }
+
+  .dynamic-form-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .dynamic-form-header h1 {
+    font-size: 22px;
+  }
+
+  .dynamic-form-actions {
+    flex-direction: column-reverse;
+  }
+
+  .dynamic-form-actions button {
+    width: 100%;
+  }
+}

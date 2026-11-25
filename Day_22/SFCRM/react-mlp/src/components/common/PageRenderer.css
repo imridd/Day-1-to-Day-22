@@ -1,0 +1,198 @@
+
+/* =========================================
+   SALESFORCE LIGHTNING - PAGE RENDERER
+========================================= */
+
+.page-renderer {
+  display: flex;
+  flex: 1 1 auto;
+  flex-direction: column;
+  gap: 18px;
+  width: 100%;
+  min-width: 0;
+  min-height: 0;
+  box-sizing: border-box;
+  color: #181818;
+  background: #f3f3f3;
+  font-family: 'DM Sans', sans-serif;
+}
+
+/* =========================================
+   PAGE HEADER
+========================================= */
+
+.page-renderer .page-header {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+  width: 100%;
+  min-width: 0;
+}
+
+/* =========================================
+   BREADCRUMBS
+========================================= */
+
+.page-renderer .page-breadcrumbs {
+  display: flex;
+  align-items: center;
+  flex-wrap: wrap;
+  gap: 7px;
+  color: #706e6b;
+  font-size: 12px;
+  font-weight: 400;
+}
+
+.page-renderer .page-breadcrumbs a {
+  color: #0176d3;
+  text-decoration: none;
+  cursor: pointer;
+}
+
+.page-renderer .page-breadcrumbs a:hover {
+  color: #014486;
+  text-decoration: underline;
+}
+
+.page-renderer .breadcrumb-separator {
+  margin: 0 3px;
+  color: #c9c7c5;
+  font-size: 11px;
+}
+
+/* =========================================
+   PAGE HEADING
+========================================= */
+
+.page-renderer .page-heading {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  flex-wrap: wrap;
+  gap: 16px;
+  width: 100%;
+  min-width: 0;
+}
+
+.page-renderer .page-heading > * {
+  min-width: 0;
+}
+
+.page-renderer .page-heading h1 {
+  margin: 0;
+  color: #181818;
+  font-size: 24px;
+  font-weight: 700;
+  line-height: 1.3;
+  letter-spacing: -0.35px;
+}
+
+.page-renderer .page-heading p {
+  margin: 5px 0 0;
+  color: #706e6b;
+  font-size: 13px;
+  line-height: 1.5;
+  font-weight: 400;
+}
+
+/* =========================================
+   PAGE CONTENT
+========================================= */
+
+.page-renderer .page-content {
+  display: flex;
+  flex: 1 1 auto;
+  flex-direction: column;
+  gap: 16px;
+  width: 100%;
+  min-width: 0;
+  min-height: 0;
+  background: #f3f3f3;
+}
+
+.page-renderer .page-component {
+  width: 100%;
+  min-width: 0;
+  box-sizing: border-box;
+}
+
+/* =========================================
+   LOADING AND EMPTY STATES
+========================================= */
+
+.page-renderer .page-loading,
+.page-renderer .page-empty,
+.page-renderer .page-renderer-empty {
+  padding: 32px 24px;
+  border: 1px solid #dddbda;
+  border-radius: 4px;
+  background: #ffffff;
+  color: #706e6b;
+  text-align: center;
+  font-size: 13px;
+}
+
+.page-renderer .page-loading {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  min-height: 100px;
+}
+
+.page-renderer .page-renderer-empty h2 {
+  margin: 0 0 8px;
+  color: #181818;
+  font-size: 18px;
+  font-weight: 700;
+}
+
+.page-renderer .page-renderer-empty p {
+  margin: 0;
+  color: #706e6b;
+  font-size: 13px;
+  line-height: 1.6;
+}
+
+/* =========================================
+   RESPONSIVE
+========================================= */
+
+@media (max-width: 768px) {
+  .page-renderer {
+    gap: 16px;
+  }
+
+  .page-renderer .page-heading {
+    align-items: flex-start;
+    flex-direction: column;
+    gap: 12px;
+  }
+
+  .page-renderer .page-heading h1 {
+    font-size: 22px;
+  }
+
+  .page-renderer .page-content {
+    gap: 14px;
+  }
+}
+
+@media (max-width: 480px) {
+  .page-renderer {
+    gap: 14px;
+  }
+
+  .page-renderer .page-heading h1 {
+    font-size: 20px;
+  }
+
+  .page-renderer .page-heading p {
+    font-size: 12px;
+  }
+
+  .page-renderer .page-loading,
+  .page-renderer .page-empty,
+  .page-renderer .page-renderer-empty {
+    padding: 22px 16px;
+  }
+}

@@ -1,0 +1,170 @@
+
+{
+  "id": "leads",
+  "title": "Leads",
+  "description": "Manage prospects and potential customers.",
+  "endpoint": "/leads",
+  "defaultValues": {
+    "FirstName": "",
+    "LastName": "",
+    "Company": "",
+    "Email": "",
+    "Phone": "",
+    "Status": "New",
+    "LeadSource": "Website",
+    "Rating": "Warm",
+    "Industry": "",
+    "OwnerId": ""
+  },
+  "formSections": [
+    {
+      "title": "Lead Information",
+      "fields": [
+        {
+          "name": "FirstName",
+          "label": "First name",
+          "type": "text"
+        },
+        {
+          "name": "LastName",
+          "label": "Last name",
+          "type": "text",
+          "required": true
+        },
+        {
+          "name": "Company",
+          "label": "Company",
+          "type": "text",
+          "required": true
+        },
+        {
+          "name": "Email",
+          "label": "Email",
+          "type": "email"
+        },
+        {
+          "name": "Phone",
+          "label": "Phone",
+          "type": "tel"
+        }
+      ]
+    },
+    {
+      "title": "Lead Details",
+      "fields": [
+        {
+          "name": "Status",
+          "label": "Lead status",
+          "type": "select",
+          "options": [
+            { "label": "New", "value": "New" },
+            { "label": "Working", "value": "Working" },
+            { "label": "Qualified", "value": "Qualified" },
+            { "label": "Unqualified", "value": "Unqualified" },
+            { "label": "Converted", "value": "Converted" }
+          ]
+        },
+        {
+          "name": "LeadSource",
+          "label": "Lead source",
+          "type": "select",
+          "options": [
+            { "label": "Website", "value": "Website" },
+            { "label": "Referral", "value": "Referral" },
+            { "label": "Webinar", "value": "Webinar" },
+            { "label": "Partner", "value": "Partner" },
+            { "label": "Outbound", "value": "Outbound" }
+          ]
+        },
+        {
+          "name": "Rating",
+          "label": "Rating",
+          "type": "select",
+          "options": [
+            { "label": "Hot", "value": "Hot" },
+            { "label": "Warm", "value": "Warm" },
+            { "label": "Cold", "value": "Cold" }
+          ]
+        },
+        {
+          "name": "Industry",
+          "label": "Industry",
+          "type": "text"
+        },
+        {
+          "name": "OwnerId",
+          "label": "Lead owner",
+          "type": "select",
+          "options": {
+            "$context": "userOptions"
+          }
+        }
+      ]
+    }
+  ],
+  "columns": [
+    { "key": "FirstName", "label": "First name" },
+    { "key": "LastName", "label": "Last name", "sortable": true },
+    { "key": "Company", "label": "Company", "sortable": true },
+    { "key": "Email", "label": "Email" },
+    { "key": "Phone", "label": "Phone" },
+    { "key": "Status", "label": "Status" },
+    { "key": "LeadSource", "label": "Source" },
+    { "key": "Rating", "label": "Rating" },
+    { "key": "OwnerId", "label": "Owner" }
+  ],
+  "filters": [
+    {
+      "name": "Status",
+      "label": "Status",
+      "type": "select",
+      "options": [
+        { "label": "New", "value": "New" },
+        { "label": "Working", "value": "Working" },
+        { "label": "Qualified", "value": "Qualified" },
+        { "label": "Unqualified", "value": "Unqualified" },
+        { "label": "Converted", "value": "Converted" }
+      ]
+    },
+    {
+      "name": "Rating",
+      "label": "Rating",
+      "type": "select",
+      "options": [
+        { "label": "Hot", "value": "Hot" },
+        { "label": "Warm", "value": "Warm" },
+        { "label": "Cold", "value": "Cold" }
+      ]
+    }
+  ],
+  "page": {
+    "title": "Leads",
+    "description": "Discover, qualify and convert potential customers.",
+    "breadcrumbs": [
+      "Workspace",
+      "CRM",
+      "Leads"
+    ],
+    "components": [
+      {
+        "id": "lead-filters",
+        "component": "FilterBar",
+        "props": {
+          "searchPlaceholder": "Search leads..."
+        }
+      },
+      {
+        "id": "lead-table",
+        "component": "DataTable",
+        "props": {
+          "columns": {
+            "$context": "leadColumns"
+          },
+          "data": {
+            "$context": "leads"
+          }
+        }
+      }
+    ]
+  }
+}

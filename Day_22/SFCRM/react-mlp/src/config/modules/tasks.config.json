@@ -1,0 +1,194 @@
+
+{
+  "id": "tasks",
+  "title": "Tasks",
+  "endpoint": "/tasks",
+  "defaultValues": {
+    "Subject": "",
+    "Status": "Not Started",
+    "Priority": "Normal",
+    "ActivityDate": "",
+    "OwnerId": "",
+    "RelatedToId": ""
+  },
+  "formSections": [
+    {
+      "title": "Task Information",
+      "fields": [
+        {
+          "name": "Subject",
+          "label": "Task subject",
+          "type": "text",
+          "required": true
+        },
+        {
+          "name": "Status",
+          "label": "Status",
+          "type": "select",
+          "options": [
+            {
+              "label": "Not Started",
+              "value": "Not Started"
+            },
+            {
+              "label": "In Progress",
+              "value": "In Progress"
+            },
+            {
+              "label": "Completed",
+              "value": "Completed"
+            }
+          ]
+        },
+        {
+          "name": "Priority",
+          "label": "Priority",
+          "type": "select",
+          "options": [
+            {
+              "label": "High",
+              "value": "High"
+            },
+            {
+              "label": "Normal",
+              "value": "Normal"
+            },
+            {
+              "label": "Low",
+              "value": "Low"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "title": "Assignment & Schedule",
+      "fields": [
+        {
+          "name": "ActivityDate",
+          "label": "Due date",
+          "type": "date"
+        },
+        {
+          "name": "OwnerId",
+          "label": "Assigned to",
+          "type": "select",
+          "options": {
+            "$context": "userOptions"
+          }
+        },
+        {
+          "name": "RelatedToId",
+          "label": "Related record ID",
+          "type": "text",
+          "placeholder": "Enter related CRM record ID"
+        }
+      ]
+    }
+  ],
+  "columns": [
+    {
+      "key": "Subject",
+      "label": "Task",
+      "sortable": true
+    },
+    {
+      "key": "Description",
+      "label": "Description"
+    },
+    {
+      "key": "Status",
+      "label": "Status",
+      "sortable": true
+    },
+    {
+      "key": "Priority",
+      "label": "Priority",
+      "sortable": true
+    },
+    {
+      "key": "ActivityDate",
+      "label": "Due date",
+      "type": "date",
+      "sortable": true
+    },
+    {
+      "key": "OwnerId",
+      "label": "Assigned to"
+    },
+    {
+      "key": "RelatedToId",
+      "label": "Related record"
+    }
+  ],
+  "filters": [
+    {
+      "name": "Status",
+      "label": "Status",
+      "type": "select",
+      "options": [
+        {
+          "label": "Not Started",
+          "value": "Not Started"
+        },
+        {
+          "label": "In Progress",
+          "value": "In Progress"
+        },
+        {
+          "label": "Completed",
+          "value": "Completed"
+        }
+      ]
+    },
+    {
+      "name": "Priority",
+      "label": "Priority",
+      "type": "select",
+      "options": [
+        {
+          "label": "High",
+          "value": "High"
+        },
+        {
+          "label": "Normal",
+          "value": "Normal"
+        },
+        {
+          "label": "Low",
+          "value": "Low"
+        }
+      ]
+    }
+  ],
+  "page": {
+    "title": "Tasks",
+    "description": "Stay on top of your activities and follow-ups.",
+    "breadcrumbs": [
+      "Workspace",
+      "CRM",
+      "Tasks"
+    ],
+    "components": [
+      {
+        "id": "task-filters",
+        "component": "FilterBar",
+        "props": {
+          "searchPlaceholder": "Search tasks..."
+        }
+      },
+      {
+        "id": "task-table",
+        "component": "DataTable",
+        "props": {
+          "columns": {
+            "$context": "taskColumns"
+          },
+          "data": {
+            "$context": "tasks"
+          }
+        }
+      }
+    ]
+  }
+}

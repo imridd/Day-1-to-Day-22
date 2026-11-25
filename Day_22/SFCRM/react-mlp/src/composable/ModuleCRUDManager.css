@@ -1,0 +1,229 @@
+
+/* =========================================
+   MODULE CRUD MANAGER
+   SALESFORCE LIGHTNING INSPIRED
+========================================= */
+
+.module-crud-page {
+  width: 100%;
+  min-width: 0;
+  box-sizing: border-box;
+  padding: 26px 28px;
+  color: #181818;
+  background: #f3f3f3;
+}
+
+/* =========================================
+   MODULE HEADER
+========================================= */
+
+.module-page-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  flex-wrap: wrap;
+  gap: 16px;
+  width: 100%;
+  min-width: 0;
+  margin-bottom: 22px;
+}
+
+.module-page-heading {
+  flex: 1 1 220px;
+  min-width: 0;
+}
+
+.module-page-heading h1 {
+  margin: 0;
+  color: #181818;
+  font-size: 25px;
+  font-weight: 600;
+  overflow-wrap: anywhere;
+}
+
+.module-page-heading p {
+  margin: 7px 0 0;
+  color: #706e6b;
+  font-size: 13px;
+}
+
+.module-page-actions {
+  display: flex;
+  align-items: center;
+  justify-content: flex-end;
+  flex: 0 1 auto;
+  flex-wrap: wrap;
+  min-width: 0;
+  gap: 10px;
+}
+
+.module-page-actions button {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+  gap: 8px;
+  min-height: 38px;
+  padding: 0 15px;
+  border-radius: 4px;
+  font-family: inherit;
+  font-size: 13px;
+  font-weight: 600;
+  white-space: nowrap;
+  cursor: pointer;
+  transition: background 0.15s ease, border-color 0.15s ease;
+}
+
+.module-page-actions button:disabled {
+  opacity: 0.6;
+  cursor: not-allowed;
+}
+
+/* REFRESH BUTTON */
+
+.module-refresh-btn {
+  color: #444444;
+  background: #ffffff;
+  border: 1px solid #c9c7c5;
+}
+
+.module-refresh-btn:hover:not(:disabled) {
+  background: #f3f3f3;
+}
+
+/* NEW RECORD BUTTON */
+
+.module-new-btn {
+  min-width: 155px;
+  color: #ffffff;
+  background: #0176d3;
+  border: 1px solid #0176d3;
+}
+
+.module-new-btn:hover:not(:disabled) {
+  background: #014486;
+  border-color: #014486;
+}
+
+/* REFRESH ANIMATION */
+
+.module-refresh-spin {
+  animation: module-refresh-rotation 1s linear infinite;
+}
+
+@keyframes module-refresh-rotation {
+  to {
+    transform: rotate(360deg);
+  }
+}
+
+/* =========================================
+   TABLE CONTAINER
+========================================= */
+
+.module-table-container {
+  width: 100%;
+  min-width: 0;
+}
+
+/* =========================================
+   CREATE / EDIT MODAL
+========================================= */
+
+.module-modal-backdrop {
+  position: fixed;
+  inset: 0;
+  z-index: 1000;
+  display: grid;
+  place-items: center;
+  padding: 20px;
+  overflow-y: auto;
+  background: rgba(24, 24, 24, 0.45);
+  backdrop-filter: blur(2px);
+}
+
+.module-modal {
+  width: min(760px, 100%);
+  max-height: 90vh;
+  overflow-y: auto;
+  padding: 24px;
+  color: #181818;
+  background: #ffffff;
+  border: 1px solid #dddbda;
+  border-radius: 5px;
+  box-shadow: 0 8px 28px rgba(0, 0, 0, 0.18);
+}
+
+/* =========================================
+   LOADING / PERMISSION STATES
+========================================= */
+
+.module-state {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  min-height: 200px;
+  padding: 28px;
+  color: #706e6b;
+  font-size: 14px;
+  background: #f3f3f3;
+}
+
+.module-access-denied {
+  flex-direction: column;
+  text-align: center;
+}
+
+.module-access-denied h2 {
+  margin: 0 0 8px;
+  color: #181818;
+  font-size: 20px;
+}
+
+.module-access-denied p {
+  margin: 0;
+  color: #706e6b;
+}
+
+/* =========================================
+   RESPONSIVE
+========================================= */
+
+@media (max-width: 700px) {
+  .module-crud-page {
+    padding: 18px 14px;
+  }
+
+  .module-page-header {
+    align-items: flex-start;
+  }
+
+  .module-page-actions {
+    width: 100%;
+    justify-content: flex-start;
+  }
+
+  .module-page-actions button {
+    flex: 1 1 auto;
+  }
+
+  .module-modal-backdrop {
+    padding: 10px;
+  }
+
+  .module-modal {
+    padding: 16px;
+    max-height: 95vh;
+  }
+}
+
+@media (max-width: 380px) {
+  .module-page-actions {
+    flex-direction: column;
+    align-items: stretch;
+  }
+
+  .module-page-actions button {
+    width: 100%;
+  }
+}

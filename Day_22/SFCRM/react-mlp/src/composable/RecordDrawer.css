@@ -1,0 +1,234 @@
+
+.record-drawer-backdrop {
+  position: fixed;
+  inset: 0;
+  z-index: 1000;
+  display: flex;
+  justify-content: flex-end;
+  background: rgba(24, 24, 24, 0.45);
+  backdrop-filter: blur(2px);
+  animation: drawer-fade-in 0.2s ease;
+}
+
+.record-drawer {
+  display: flex;
+  flex-direction: column;
+  width: min(540px, 100%);
+  height: 100%;
+  overflow: hidden;
+  border-left: 1px solid #dddbda;
+  background: #ffffff;
+  color: #181818;
+  box-shadow: -8px 0 24px rgba(0, 0, 0, 0.15);
+  animation: drawer-slide-in 0.25s ease;
+}
+
+.record-drawer-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 16px;
+  padding: 20px 23px;
+  border-bottom: 1px solid #dddbda;
+  background: #ffffff;
+}
+
+.record-drawer-heading {
+  display: flex;
+  align-items: center;
+  gap: 13px;
+  min-width: 0;
+}
+
+.record-drawer-icon {
+  display: grid;
+  place-items: center;
+  flex-shrink: 0;
+  width: 40px;
+  height: 40px;
+  border: 1px solid #b0d5f5;
+  border-radius: 5px;
+  background: #eaf5fe;
+  color: #0176d3;
+}
+
+.record-drawer-heading h2 {
+  margin: 0;
+  color: #181818;
+  font-size: 17px;
+  font-weight: 600;
+}
+
+.record-drawer-heading p {
+  margin: 5px 0 0;
+  color: #706e6b;
+  font-size: 12px;
+}
+
+.record-drawer-close {
+  display: grid;
+  place-items: center;
+  flex-shrink: 0;
+  width: 34px;
+  height: 34px;
+  border: 1px solid transparent;
+  border-radius: 4px;
+  background: transparent;
+  color: #706e6b;
+  cursor: pointer;
+  transition: background 0.15s ease, color 0.15s ease;
+}
+
+.record-drawer-close:hover {
+  border-color: #dddbda;
+  background: #f3f3f3;
+  color: #181818;
+}
+
+.record-drawer-content {
+  flex: 1;
+  overflow-y: auto;
+  padding: 22px 23px;
+  background: #ffffff;
+}
+
+.record-drawer-section {
+  margin-bottom: 27px;
+}
+
+.record-drawer-section h3 {
+  margin: 0 0 16px;
+  padding-bottom: 11px;
+  border-bottom: 1px solid #dddbda;
+  color: #444444;
+  font-size: 11px;
+  font-weight: 700;
+  letter-spacing: 0.6px;
+  text-transform: uppercase;
+}
+
+.record-drawer-grid {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 20px 15px;
+}
+
+.record-drawer-field {
+  min-width: 0;
+}
+
+.record-drawer-field.full-width {
+  grid-column: 1 / -1;
+}
+
+.record-drawer-label {
+  display: block;
+  margin-bottom: 6px;
+  color: #706e6b;
+  font-size: 11px;
+  font-weight: 500;
+}
+
+.record-drawer-value {
+  overflow-wrap: anywhere;
+  color: #181818;
+  font-size: 13px;
+  line-height: 1.6;
+}
+
+.record-drawer-footer {
+  display: flex;
+  justify-content: flex-end;
+  gap: 10px;
+  padding: 15px 23px;
+  border-top: 1px solid #dddbda;
+  background: #f3f3f3;
+}
+
+.record-drawer-footer button {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+  min-height: 36px;
+  padding: 0 15px;
+  border-radius: 4px;
+  font-family: inherit;
+  font-size: 13px;
+  font-weight: 600;
+  cursor: pointer;
+  transition: background 0.15s ease, border-color 0.15s ease;
+}
+
+.record-drawer-secondary {
+  border: 1px solid #c9c7c5;
+  background: #ffffff;
+  color: #0176d3;
+}
+
+.record-drawer-secondary:hover {
+  border-color: #0176d3;
+  background: #f3f9ff;
+}
+
+.record-drawer-primary {
+  border: 1px solid #0176d3;
+  background: #0176d3;
+  color: #ffffff;
+}
+
+.record-drawer-primary:hover {
+  border-color: #014486;
+  background: #014486;
+}
+
+.record-drawer-loading {
+  display: flex;
+  flex: 1;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 12px;
+  color: #706e6b;
+  font-size: 13px;
+}
+
+@keyframes drawer-fade-in {
+  from {
+    opacity: 0;
+  }
+
+  to {
+    opacity: 1;
+  }
+}
+
+@keyframes drawer-slide-in {
+  from {
+    transform: translateX(35px);
+  }
+
+  to {
+    transform: translateX(0);
+  }
+}
+
+@media (max-width: 520px) {
+  .record-drawer {
+    width: 100%;
+  }
+
+  .record-drawer-header,
+  .record-drawer-content {
+    padding-left: 17px;
+    padding-right: 17px;
+  }
+
+  .record-drawer-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .record-drawer-field.full-width {
+    grid-column: auto;
+  }
+}

@@ -1,0 +1,506 @@
+
+{
+  "crmModules": {
+    "leads": {
+      "id": "leads",
+      "title": "Leads",
+      "description": "Manage potential customers and sales prospects.",
+      "endpoint": "/leads",
+      "defaultValues": {
+        "FirstName": "",
+        "LastName": "",
+        "Company": "",
+        "Email": "",
+        "Phone": "",
+        "Status": "New",
+        "LeadSource": "Website",
+        "Rating": "Warm",
+        "Industry": "",
+        "OwnerId": ""
+      },
+      "formSections": [
+        {
+          "id": "lead-details",
+          "title": "Lead Information",
+          "description": "",
+          "fields": [
+            { "name": "FirstName", "label": "First Name", "type": "text" },
+            { "name": "LastName", "label": "Last Name", "type": "text", "required": true },
+            { "name": "Company", "label": "Company", "type": "text", "required": true },
+            { "name": "Industry", "label": "Industry", "type": "text" }
+          ]
+        },
+        {
+          "id": "lead-contact",
+          "title": "Contact Information",
+          "description": "",
+          "fields": [
+            { "name": "Email", "label": "Email", "type": "email" },
+            { "name": "Phone", "label": "Phone", "type": "tel" }
+          ]
+        },
+        {
+          "id": "lead-status",
+          "title": "Lead Classification",
+          "description": "",
+          "fields": [
+            {
+              "name": "Status",
+              "label": "Status",
+              "type": "select",
+              "options": ["New", "Working", "Qualified", "Unqualified"]
+            },
+            {
+              "name": "LeadSource",
+              "label": "Lead Source",
+              "type": "select",
+              "options": ["Website", "Referral", "Webinar", "Partner", "Outbound"]
+            },
+            {
+              "name": "Rating",
+              "label": "Rating",
+              "type": "select",
+              "options": ["Hot", "Warm", "Cold"]
+            },
+            {
+              "name": "OwnerId",
+              "label": "Record Owner",
+              "type": "select",
+              "options": {
+                "$context": "userOptions"
+              }
+            }
+          ]
+        }
+      ],
+      "columns": [
+        {
+          "key": "Name",
+          "accessor": "FirstName + LastName",
+          "label": "Lead Name",
+          "width": null
+        },
+        {
+          "key": "Company",
+          "accessor": "Company",
+          "label": "Company",
+          "width": null
+        },
+        {
+          "key": "Email",
+          "accessor": "Email",
+          "label": "Email",
+          "width": null
+        },
+        {
+          "key": "Phone",
+          "accessor": "Phone",
+          "label": "Phone",
+          "width": null
+        },
+        {
+          "key": "Status",
+          "accessor": "Status",
+          "label": "Status",
+          "width": null
+        },
+        {
+          "key": "Rating",
+          "accessor": "Rating",
+          "label": "Rating",
+          "width": null
+        }
+      ]
+    },
+
+    "contacts": {
+      "id": "contacts",
+      "title": "Contacts",
+      "description": "Manage people associated with your business accounts.",
+      "endpoint": "/contacts",
+      "defaultValues": {
+        "FirstName": "",
+        "LastName": "",
+        "Email": "",
+        "Phone": "",
+        "Title": "",
+        "AccountId": "",
+        "OwnerId": ""
+      },
+      "formSections": [
+        {
+          "id": "contact-details",
+          "title": "Personal Information",
+          "description": "",
+          "fields": [
+            { "name": "FirstName", "label": "First Name", "type": "text" },
+            { "name": "LastName", "label": "Last Name", "type": "text", "required": true },
+            { "name": "Title", "label": "Job Title", "type": "text" }
+          ]
+        },
+        {
+          "id": "contact-info",
+          "title": "Contact Details",
+          "description": "",
+          "fields": [
+            { "name": "Email", "label": "Email", "type": "email" },
+            { "name": "Phone", "label": "Phone", "type": "tel" },
+            {
+              "name": "AccountId",
+              "label": "Account",
+              "type": "select",
+              "options": {
+                "$context": "accountOptions"
+              }
+            },
+            {
+              "name": "OwnerId",
+              "label": "Record Owner",
+              "type": "select",
+              "options": {
+                "$context": "userOptions"
+              }
+            }
+          ]
+        }
+      ],
+      "columns": [
+        {
+          "key": "FullName",
+          "accessor": "FirstName + LastName",
+          "label": "Contact Name",
+          "width": null
+        },
+        {
+          "key": "Title",
+          "accessor": "Title",
+          "label": "Job Title",
+          "width": null
+        },
+        {
+          "key": "Email",
+          "accessor": "Email",
+          "label": "Email",
+          "width": null
+        },
+        {
+          "key": "Phone",
+          "accessor": "Phone",
+          "label": "Phone",
+          "width": null
+        },
+        {
+          "key": "AccountId",
+          "accessor": "AccountId",
+          "label": "Account",
+          "width": null
+        }
+      ]
+    },
+
+    "accounts": {
+      "id": "accounts",
+      "title": "Accounts",
+      "description": "Manage companies and business organizations.",
+      "endpoint": "/accounts",
+      "defaultValues": {
+        "Name": "",
+        "Industry": "",
+        "Website": "",
+        "Phone": "",
+        "AnnualRevenue": "",
+        "BillingCity": "",
+        "OwnerId": ""
+      },
+      "formSections": [
+        {
+          "id": "account-details",
+          "title": "Company Information",
+          "description": "",
+          "fields": [
+            { "name": "Name", "label": "Account Name", "type": "text", "required": true },
+            { "name": "Industry", "label": "Industry", "type": "text" },
+            { "name": "Website", "label": "Website", "type": "url" }
+          ]
+        },
+        {
+          "id": "account-contact",
+          "title": "Business Details",
+          "description": "",
+          "fields": [
+            { "name": "Phone", "label": "Phone", "type": "tel" },
+            {
+              "name": "AnnualRevenue",
+              "label": "Annual Revenue",
+              "type": "number",
+              "min": 0,
+              "step": 0.01
+            },
+            { "name": "BillingCity", "label": "Billing City", "type": "text" },
+            {
+              "name": "OwnerId",
+              "label": "Record Owner",
+              "type": "select",
+              "options": {
+                "$context": "userOptions"
+              }
+            }
+          ]
+        }
+      ],
+      "columns": [
+        { "key": "Name", "accessor": "Name", "label": "Account Name", "width": null },
+        { "key": "Industry", "accessor": "Industry", "label": "Industry", "width": null },
+        { "key": "Website", "accessor": "Website", "label": "Website", "width": null },
+        { "key": "Phone", "accessor": "Phone", "label": "Phone", "width": null },
+        { "key": "BillingCity", "accessor": "BillingCity", "label": "Billing City", "width": null },
+        { "key": "AnnualRevenue", "accessor": "AnnualRevenue", "label": "Annual Revenue", "width": null }
+      ]
+    },
+
+    "opportunities": {
+      "id": "opportunities",
+      "title": "Opportunities",
+      "description": "Track potential revenue through your sales pipeline.",
+      "endpoint": "/opportunities",
+      "defaultValues": {
+        "Name": "",
+        "AccountId": "",
+        "StageName": "Prospecting",
+        "Amount": 0,
+        "CloseDate": "",
+        "Probability": 10,
+        "OwnerId": ""
+      },
+      "formSections": [
+        {
+          "id": "opportunity-details",
+          "title": "Opportunity Information",
+          "description": "",
+          "fields": [
+            { "name": "Name", "label": "Opportunity Name", "type": "text", "required": true },
+            {
+              "name": "AccountId",
+              "label": "Account",
+              "type": "select",
+              "options": {
+                "$context": "accountOptions"
+              }
+            },
+            {
+              "name": "StageName",
+              "label": "Stage",
+              "type": "select",
+              "options": [
+                "Prospecting",
+                "Qualification",
+                "Proposal",
+                "Negotiation",
+                "Closed Won",
+                "Closed Lost"
+              ]
+            }
+          ]
+        },
+        {
+          "id": "opportunity-revenue",
+          "title": "Revenue & Closing",
+          "description": "",
+          "fields": [
+            { "name": "Amount", "label": "Amount", "type": "number", "min": 0, "step": 0.01 },
+            { "name": "CloseDate", "label": "Close Date", "type": "date", "required": true },
+            {
+              "name": "Probability",
+              "label": "Probability (%)",
+              "type": "number",
+              "min": 0,
+              "max": 100,
+              "disabled": true,
+              "helperText": "Calculated automatically from the opportunity stage."
+            },
+            {
+              "name": "OwnerId",
+              "label": "Record Owner",
+              "type": "select",
+              "options": {
+                "$context": "userOptions"
+              }
+            }
+          ]
+        }
+      ],
+      "columns": [
+        { "key": "Name", "accessor": "Name", "label": "Opportunity", "width": null },
+        { "key": "AccountId", "accessor": "AccountId", "label": "Account", "width": null },
+        { "key": "StageName", "accessor": "StageName", "label": "Stage", "width": null },
+        { "key": "Amount", "accessor": "Amount", "label": "Amount", "width": null },
+        { "key": "Probability", "accessor": "Probability", "label": "Probability", "width": null },
+        { "key": "CloseDate", "accessor": "CloseDate", "label": "Close Date", "width": null }
+      ]
+    },
+
+    "tasks": {
+      "id": "tasks",
+      "title": "Tasks",
+      "description": "Manage follow-ups and activities related to CRM records.",
+      "endpoint": "/tasks",
+      "defaultValues": {
+        "Subject": "",
+        "Status": "Not Started",
+        "Priority": "Normal",
+        "ActivityDate": "",
+        "RelatedToId": "",
+        "OwnerId": ""
+      },
+      "formSections": [
+        {
+          "id": "task-details",
+          "title": "Task Information",
+          "description": "",
+          "fields": [
+            { "name": "Subject", "label": "Subject", "type": "text", "required": true },
+            {
+              "name": "Status",
+              "label": "Status",
+              "type": "select",
+              "options": ["Not Started", "In Progress", "Completed"]
+            },
+            {
+              "name": "Priority",
+              "label": "Priority",
+              "type": "select",
+              "options": ["Low", "Normal", "High"]
+            },
+            { "name": "ActivityDate", "label": "Due Date", "type": "date" }
+          ]
+        },
+        {
+          "id": "task-related",
+          "title": "Related Record",
+          "description": "",
+          "fields": [
+            {
+              "name": "RelatedToId",
+              "label": "Related Record ID",
+              "type": "text",
+              "placeholder": "Enter a CRM record ID",
+              "helperText": "Use an ID beginning with 001, 003, 00Q, 006 or 500. The backend identifies the record type from the ID."
+            },
+            {
+              "name": "OwnerId",
+              "label": "Record Owner",
+              "type": "select",
+              "options": {
+                "$context": "userOptions"
+              }
+            }
+          ]
+        }
+      ],
+      "columns": [
+        { "key": "Subject", "accessor": "Subject", "label": "Subject", "width": null },
+        { "key": "Status", "accessor": "Status", "label": "Status", "width": null },
+        { "key": "Priority", "accessor": "Priority", "label": "Priority", "width": null },
+        { "key": "ActivityDate", "accessor": "ActivityDate", "label": "Due Date", "width": null },
+        { "key": "RelatedToId", "accessor": "RelatedToId", "label": "Related Record", "width": null }
+      ]
+    },
+
+    "cases": {
+      "id": "cases",
+      "title": "Cases",
+      "description": "Manage customer support issues and resolutions.",
+      "endpoint": "/cases",
+      "defaultValues": {
+        "Subject": "",
+        "Description": "",
+        "AccountId": "",
+        "ContactId": "",
+        "Status": "New",
+        "Priority": "Medium",
+        "Origin": "Web",
+        "OwnerId": ""
+      },
+      "formSections": [
+        {
+          "id": "case-details",
+          "title": "Case Information",
+          "description": "",
+          "fields": [
+            { "name": "Subject", "label": "Subject", "type": "text", "required": true },
+            {
+              "name": "Description",
+              "label": "Description",
+              "type": "textarea",
+              "fullWidth": true
+            }
+          ]
+        },
+        {
+          "id": "case-customer",
+          "title": "Customer Information",
+          "description": "",
+          "fields": [
+            {
+              "name": "AccountId",
+              "label": "Account",
+              "type": "select",
+              "options": {
+                "$context": "accountOptions"
+              }
+            },
+            {
+              "name": "ContactId",
+              "label": "Contact",
+              "type": "select",
+              "options": {
+                "$context": "contactOptions"
+              }
+            }
+          ]
+        },
+        {
+          "id": "case-classification",
+          "title": "Case Classification",
+          "description": "",
+          "fields": [
+            {
+              "name": "Status",
+              "label": "Status",
+              "type": "select",
+              "options": ["New", "Working", "Escalated", "Closed"]
+            },
+            {
+              "name": "Priority",
+              "label": "Priority",
+              "type": "select",
+              "options": ["Low", "Medium", "High", "Critical"]
+            },
+            {
+              "name": "Origin",
+              "label": "Origin",
+              "type": "select",
+              "options": ["Phone", "Email", "Web", "Chat"]
+            },
+            {
+              "name": "OwnerId",
+              "label": "Record Owner",
+              "type": "select",
+              "options": {
+                "$context": "userOptions"
+              }
+            }
+          ]
+        }
+      ],
+      "columns": [
+        { "key": "CaseNumber", "accessor": "CaseNumber", "label": "Case Number", "width": null },
+        { "key": "Subject", "accessor": "Subject", "label": "Subject", "width": null },
+        { "key": "Status", "accessor": "Status", "label": "Status", "width": null },
+        { "key": "Priority", "accessor": "Priority", "label": "Priority", "width": null },
+        { "key": "Origin", "accessor": "Origin", "label": "Origin", "width": null },
+        { "key": "AccountId", "accessor": "AccountId", "label": "Account", "width": null }
+      ]
+    }
+  }
+}
